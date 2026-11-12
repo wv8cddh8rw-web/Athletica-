@@ -7,55 +7,40 @@
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png">
 <title>Athletica — Suivi sportif</title>
 <style>
-:root{color-scheme:dark;--bg:#111318;--panel:#191c22;--panel2:#22262e;--line:#303640;--text:#f4f5f7;--muted:#a0a6b1;--accent:#ef8b45;--blue:#78a9e8;--orange:#ef8b45;--red:#ef7777;--radius:20px;--surface:#191c22;--field:#14171c;--navbg:rgba(17,19,24,.94);--shadow:0 8px 28px rgba(0,0,0,.08)}
-:root[data-theme="light"]{color-scheme:light;--bg:#f6f7f8;--panel:#ffffff;--panel2:#f0f2f4;--line:#e7e9ed;--text:#20242b;--muted:#7b8491;--accent:#e97932;--blue:#477fc2;--orange:#e97932;--red:#d95757;--surface:#fff;--field:#fbfbfc;--navbg:rgba(246,247,248,.94);--shadow:0 8px 28px rgba(28,39,54,.045)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
-button,input,select,textarea{font:inherit}button{cursor:pointer}.shell{max-width:1120px;margin:auto;padding:24px 22px 100px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#7bb8ff);display:grid;place-items:center;color:#09201d;font-weight:900;font-size:21px}.brand h1{font-size:19px;margin:0;letter-spacing:.2px}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.top-actions{display:flex;gap:8px}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 14px;border-radius:12px;font-weight:650}.btn.primary{background:var(--accent);border-color:var(--accent);color:#09201d}.btn.small{padding:7px 10px;font-size:12px}.nav{display:flex;gap:8px;overflow:auto;padding:5px 0 18px;margin-bottom:12px}.nav button{white-space:nowrap;border:1px solid transparent;background:transparent;color:var(--muted);padding:10px 15px;border-radius:12px;font-weight:650}.nav button.active{background:var(--panel2);border-color:var(--line);color:var(--text)}.page{display:none}.page.active{display:block}.heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:10px 0 18px}.heading h2{margin:0;font-size:25px;letter-spacing:-.5px}.heading p{margin:5px 0 0;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.card{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:var(--radius);padding:17px;min-width:0}.metric .label{font-size:12px;color:var(--muted)}.metric .value{font-size:27px;font-weight:780;letter-spacing:-.7px;margin:7px 0 2px}.metric .sub{font-size:11px;color:var(--muted)}.section-title{font-size:16px;font-weight:750;margin:23px 0 12px}.two{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.chart{height:180px;display:flex;align-items:end;gap:8px;padding:14px 3px 24px;position:relative}.barwrap{height:100%;flex:1;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:6px;min-width:0}.bar{width:min(30px,75%);border-radius:7px 7px 3px 3px;background:linear-gradient(180deg,var(--accent),#3c9d91);min-height:2px}.barlabel{font-size:10px;color:var(--muted)}.barval{font-size:10px;color:var(--text)}.empty{color:var(--muted);font-size:13px;padding:24px 8px;text-align:center}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:var(--muted);font-weight:650}.field input,.field select,.field textarea{width:100%;background:var(--field);border:1px solid var(--line);color:var(--text);border-radius:11px;padding:11px 12px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}.field textarea{min-height:76px;resize:vertical}.form-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:14px;margin-top:14px}table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:left;padding:12px 13px;border-bottom:1px solid var(--line);font-size:13px}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px;background:var(--panel2)}tr:last-child td{border-bottom:0}.pill{display:inline-block;padding:4px 8px;border-radius:30px;background:color-mix(in srgb,var(--accent) 13%,var(--panel));color:var(--accent);font-size:11px;font-weight:700}.muted{color:var(--muted)}.listhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:22px}.listhead h3{font-size:16px;margin:0}.edit{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:7px 10px;font-size:12px;margin-right:4px}.delete{border:0;background:transparent;color:var(--red);font-size:12px}.notice{border:1px solid #315448;background:color-mix(in srgb,var(--accent) 10%,var(--panel));color:var(--text);border-radius:12px;padding:12px 14px;font-size:12px;margin:14px 0}.tabswitch{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.tabswitch button{border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--muted);padding:8px 12px}.tabswitch button.active{color:var(--text);border-color:var(--accent)}.footer{color:var(--muted);font-size:11px;text-align:center;margin-top:32px}.hidden{display:none!important}
-@media(max-width:760px){.shell{padding:17px 14px 100px}.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.heading h2{font-size:22px}.top-actions .btn span{display:none}.nav{position:sticky;top:0;z-index:5;background:var(--navbg);padding:8px 0 12px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.top{margin-bottom:16px}}
+:root{--bg:#0b1220;--panel:#121d2e;--panel2:#18263a;--line:#26364c;--text:#edf3fb;--muted:#91a2b8;--accent:#75e0bd;--blue:#82b8ff;--orange:#ffbd78;--red:#ff8d91;--radius:18px}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(150deg,#0b1220,#0d1727 55%,#101e2b);color:var(--text);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.shell{max-width:1120px;margin:auto;padding:24px 22px 100px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#7bb8ff);display:grid;place-items:center;color:#09201d;font-weight:900;font-size:21px}.brand h1{font-size:19px;margin:0;letter-spacing:.2px}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.top-actions{display:flex;gap:8px}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 14px;border-radius:12px;font-weight:650}.btn.primary{background:var(--accent);border-color:var(--accent);color:#09201d}.btn.small{padding:7px 10px;font-size:12px}.nav{display:flex;gap:8px;overflow:auto;padding:5px 0 18px;margin-bottom:12px}.nav button{white-space:nowrap;border:1px solid transparent;background:transparent;color:var(--muted);padding:10px 15px;border-radius:12px;font-weight:650}.nav button.active{background:var(--panel2);border-color:var(--line);color:var(--text)}.page{display:none}.page.active{display:block}.heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:10px 0 18px}.heading h2{margin:0;font-size:25px;letter-spacing:-.5px}.heading p{margin:5px 0 0;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.card{background:linear-gradient(160deg,rgba(24,38,58,.98),rgba(17,29,45,.98));border:1px solid var(--line);border-radius:var(--radius);padding:17px;min-width:0}.metric .label{font-size:12px;color:var(--muted)}.metric .value{font-size:27px;font-weight:780;letter-spacing:-.7px;margin:7px 0 2px}.metric .sub{font-size:11px;color:var(--muted)}.section-title{font-size:16px;font-weight:750;margin:23px 0 12px}.two{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.chart{height:180px;display:flex;align-items:end;gap:8px;padding:14px 3px 24px;position:relative}.barwrap{height:100%;flex:1;display:flex;flex-direction:column;justify-content:end;align-items:center;gap:6px;min-width:0}.bar{width:min(30px,75%);border-radius:7px 7px 3px 3px;background:linear-gradient(180deg,var(--accent),#3c9d91);min-height:2px}.barlabel{font-size:10px;color:var(--muted)}.barval{font-size:10px;color:var(--text)}.empty{color:var(--muted);font-size:13px;padding:24px 8px;text-align:center}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:var(--muted);font-weight:650}.field input,.field select,.field textarea{width:100%;background:#0d1726;border:1px solid var(--line);color:var(--text);border-radius:11px;padding:11px 12px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}.field textarea{min-height:76px;resize:vertical}.form-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:14px;margin-top:14px}table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:left;padding:12px 13px;border-bottom:1px solid var(--line);font-size:13px}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px;background:#111d2d}tr:last-child td{border-bottom:0}.pill{display:inline-block;padding:4px 8px;border-radius:30px;background:#20394a;color:var(--accent);font-size:11px;font-weight:700}.muted{color:var(--muted)}.listhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:22px}.listhead h3{font-size:16px;margin:0}.edit{background:#203d5b;color:#b9d9ff;border:1px solid #355777;border-radius:9px;padding:7px 10px;font-size:12px;margin-right:4px}.delete{border:0;background:transparent;color:var(--red);font-size:12px}.notice{border:1px solid #315448;background:#122d2a;color:#b9f1dc;border-radius:12px;padding:12px 14px;font-size:12px;margin:14px 0}.tabswitch{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.tabswitch button{border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--muted);padding:8px 12px}.tabswitch button.active{color:var(--text);border-color:var(--accent)}.footer{color:var(--muted);font-size:11px;text-align:center;margin-top:32px}.hidden{display:none!important}
+@media(max-width:760px){.shell{padding:17px 14px 100px}.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.heading h2{font-size:22px}.top-actions .btn span{display:none}.nav{position:sticky;top:0;z-index:5;background:#0c1523;padding:8px 0 12px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.top{margin-bottom:16px}}
 
-/* ATHLETICA 3.0 — refined interface */
-body{transition:background .22s ease,color .22s ease}
-.shell{max-width:1160px;padding-top:30px}
-.top{margin-bottom:22px}
-.logo{background:var(--accent);color:#fff;border-radius:15px;box-shadow:0 5px 14px color-mix(in srgb,var(--accent) 22%,transparent)}
-.brand h1{letter-spacing:1.8px;font-size:18px;font-weight:850}
-.brand p{font-size:12px}
-.nav{gap:5px;border-bottom:1px solid var(--line);padding-bottom:14px}
-.nav button{font-size:13px;padding:9px 13px}
-.nav button.active{background:var(--surface);border-color:var(--line);box-shadow:var(--shadow)}
-.heading{margin:18px 0 22px}
-.heading h2{font-size:29px;font-weight:780;letter-spacing:-1px}
-.card{border-radius:20px;padding:20px}
-.metric .label{font-size:12px;letter-spacing:.1px}
-.metric .value{font-size:31px;letter-spacing:-1.2px}
-.section-title{font-size:15px;letter-spacing:-.2px}
-.chart{height:190px}
-.bar{background:var(--accent);border-radius:9px 9px 4px 4px}
-.btn{border-radius:13px}
-.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 16%,transparent)}
-.theme-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
-.theme-option{border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:16px;text-align:left;color:var(--text);min-height:104px;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
-.theme-option[aria-pressed="true"]{border:2px solid var(--accent);padding:15px;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 10%,transparent)}
-.theme-swatch{height:34px;border-radius:10px;border:1px solid var(--line);display:flex;overflow:hidden}
-.theme-swatch span:first-child{flex:1;background:#fff}.theme-swatch span:last-child{width:30%;background:#e97932}
-.theme-option.dark .theme-swatch span:first-child{background:#171a20}
-.theme-option.auto .theme-swatch span:first-child{background:linear-gradient(90deg,#fff 50%,#171a20 50%)}
-.settings-note{color:var(--muted);font-size:13px;max-width:620px}
-@media(max-width:760px){.shell{padding:16px 14px 90px}.heading h2{font-size:25px}.card{padding:17px}.theme-options{grid-template-columns:1fr}.theme-option{min-height:80px;flex-direction:row;align-items:center}.theme-swatch{width:86px;flex:none}}
+.shoe-card{background:linear-gradient(155deg,rgba(24,38,58,.98),rgba(17,29,45,.98));border:1px solid var(--line);border-radius:18px;padding:17px;min-width:0}
+.shoe-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.shoe-name{font-weight:760;font-size:15px;line-height:1.3}
+.shoe-km{font-size:25px;font-weight:800;margin:13px 0 2px}
+.progress{height:8px;border-radius:20px;background:#26364c;overflow:hidden;margin:10px 0 7px}
+.progress>span{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,var(--accent),var(--blue))}
+.shoe-meta{font-size:11px;color:var(--muted)}
 </style><script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script></head>
 <body><div class="shell">
 <header class="top"><div class="brand"><div class="logo">A</div><div><h1>ATHLETICA</h1><p>Ton espace de progression</p></div></div><div class="top-actions"><button class="btn small" id="exportBtn">↧ <span>Exporter</span></button><button class="btn small" id="importBtn">↥ <span>Importer</span></button><input id="importFile" type="file" accept="application/json" class="hidden"></div></header>
-<nav class="nav" id="nav"><button class="active" data-page="dashboard">Vue d'ensemble</button><button data-page="running">Course</button><button data-page="planned">Planning course</button><button data-page="gym">Musculation</button><button data-page="body">Mensurations</button><button data-page="history">Historique</button><button data-page="settings">Réglages</button></nav>
+<nav class="nav" id="nav"><button class="active" data-page="dashboard">Vue d'ensemble</button><button data-page="running">Course</button><button data-page="planned">Planning course</button><button data-page="gym">Musculation</button><button data-page="body">Mensurations</button><button data-page="history">Historique</button><button data-page="shoes">Chaussures</button></nav>
 <main>
 <section class="page active" id="dashboard"><div class="heading"><div><h2>Bonjour, athlète.</h2><p>Voici le résumé de ton entraînement.</p></div><span class="pill" id="today"></span></div>
 <div class="grid">
-<div class="card metric"><div class="label">Distance cumulée</div><div class="value" id="totalKm">0 km</div><div class="sub">Toutes les sorties</div></div>
-<div class="card metric"><div class="label">Sorties</div><div class="value" id="runCount">0</div><div class="sub">Course à pied</div></div>
-<div class="card metric"><div class="label">Séances de renforcement</div><div class="value" id="gymCount">0</div><div class="sub">Séances distinctes</div></div>
+<div class="card metric"><div class="label">Distance totale</div><div class="value" id="totalKm">0 km</div><div class="sub">Toutes les sorties</div></div>
+<div class="card metric"><div class="label">Sorties enregistrées</div><div class="value" id="runCount">0</div><div class="sub">Course à pied</div></div>
+<div class="card metric"><div class="label">Séances de musculation</div><div class="value" id="gymCount">0</div><div class="sub">Séances distinctes</div></div>
 <div class="card metric"><div class="label">Dernier poids</div><div class="value" id="lastWeight">—</div><div class="sub">Dernière mesure</div></div></div>
 <div class="two"><div><div class="section-title">Volume de course — 7 dernières semaines</div><div class="card"><div class="chart" id="runChart"><div class="empty">Ajoute tes premières sorties pour voir ta progression.</div></div></div></div><div><div class="section-title">Dernières mensurations</div><div class="card" id="bodySummary"><div class="empty">Aucune mesure enregistrée.</div></div><div class="section-title">À retenir</div><div class="card"><div class="muted" style="font-size:13px">Enregistre tes séances régulièrement pour construire ton historique et visualiser ta progression.</div></div></div></div>
+<div class="section-title">Cette semaine</div>
+<div class="grid">
+<div class="card metric"><div class="label">Kilomètres cette semaine</div><div class="value" id="weekKm">0 km</div><div class="sub" id="weekRuns">0 sortie</div></div>
+<div class="card metric"><div class="label">Allure moyenne</div><div class="value" id="weekPace">—</div><div class="sub">Sur les sorties de la semaine</div></div>
+<div class="card metric"><div class="label">Objectif hebdomadaire</div><div class="value" id="weekGoalText">—</div><div class="sub">Objectif ajustable dans Réglages</div></div>
+<div class="card metric"><div class="label">Dernière course</div><div class="value" id="lastRunDate">—</div><div class="sub" id="lastRunDetail">Aucune sortie</div></div>
+</div>
+<div class="section-title">Ton équipement</div>
+<div class="card" id="dashboardShoes"><div class="empty">Suivi de tes chaussures de running.</div></div>
 </section>
 <section class="page" id="running"><div class="heading"><div><h2>Course à pied</h2><p>Enregistre tes sorties et tes séances de qualité.</p></div></div>
 <div class="card"><form id="runForm"><div class="formgrid">
@@ -63,7 +48,7 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px color-mix(in srgb,v
 <div class="field"><label>Type de séance</label><select name="type"><option>Footing</option><option>Fractionné</option><option>Tempo</option><option>Sortie longue</option><option>Récupération</option><option>Test / course</option><option>Autre</option></select></div><div class="field"><label>Distance totale (km)</label><input name="distance" type="number" min="0" step=".01" placeholder="Ex. 5.00" required></div>
 <div class="field"><label>Durée (mm:ss ou h:mm:ss)</label><input name="duration" type="text" inputmode="numeric" placeholder="Ex. 29:56 ou 1:05:32" pattern="(?:[0-9]{1,3}:)?[0-5]?[0-9]:[0-5][0-9]" required></div><div class="field"><label>FC moyenne (bpm)</label><input name="avgHR" type="number" min="1" max="240" placeholder="Facultatif"></div>
 <div class="field"><label>Calories (kcal)</label><input name="calories" type="number" min="0" step="1" placeholder="Facultatif"></div><div class="field"><label>Dénivelé positif (m)</label><input name="elevation" type="number" min="0" step="1" placeholder="Facultatif"></div>
-<div class="field"><label>Difficulté ressentie (/10)</label><input name="rpe" type="number" min="1" max="10" step="1" placeholder="Facultatif"></div><div class="field"><label>Chaussures</label><input name="shoes" list="shoeOptions" placeholder="Ex. ASICS Nimbus 28"><datalist id="shoeOptions"></datalist></div>
+<div class="field"><label>Difficulté ressentie (/10)</label><input name="rpe" type="number" min="1" max="10" step="1" placeholder="Facultatif"></div><div class="field"><label>Chaussures</label><input name="shoes" list="shoeOptions" placeholder="Choisir ou saisir une paire"><datalist id="shoeOptions"></datalist></div>
 <div class="field"><label>Météo</label><select name="weather"><option value="">Non renseignée</option><option>Ensoleillé</option><option>Nuageux</option><option>Pluie</option><option>Vent</option><option>Humide</option><option>Froid</option><option>Chaud</option></select></div><div class="field"><label>Température (°C)</label><input name="temperature" type="number" step=".1" placeholder="Facultatif"></div>
 <div class="field"><label>Échauffement — durée</label><input name="warmupDuration" type="text" inputmode="numeric" placeholder="Ex. 10:00"></div><div class="field"><label>Échauffement — distance (km)</label><input name="warmupDistance" type="number" min="0" step=".01" placeholder="Facultatif"></div>
 <div class="field"><label>Douleur genou (/10)</label><select name="kneePain"><option value="">Non renseignée</option><option value="1">1 — aucune / minime</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10 — maximale</option></select></div>
@@ -90,47 +75,31 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px color-mix(in srgb,v
 <div class="listhead"><h3>Historique corporel</h3></div><div class="tablewrap"><table><thead><tr><th>Date</th><th>Poids</th><th>Taille</th><th>Poitrine</th><th>Bras</th><th></th></tr></thead><tbody id="bodyRows"></tbody></table></div></section>
 <section class="page" id="history"><div class="heading"><div><h2>Historique complet</h2><p>Toutes tes activités enregistrées.</p></div></div><div class="grid"><div class="card metric"><div class="label">Volume musculation</div><div class="value" id="allVolume">0 kg</div><div class="sub">Somme charge × répétitions</div></div><div class="card metric"><div class="label">Distance moyenne</div><div class="value" id="avgRun">—</div><div class="sub">Par sortie</div></div><div class="card metric"><div class="label">Meilleure allure</div><div class="value" id="bestPace">—</div><div class="sub">Sortie la plus rapide en allure moyenne</div></div><div class="card metric"><div class="label">Mesures corporelles</div><div class="value" id="bodyCount">0</div><div class="sub">Enregistrements</div></div></div><div class="notice">Tes données sont stockées localement dans ce navigateur. Utilise Exporter pour créer une sauvegarde régulière.</div></section>
 
-<section class="page" id="settings">
-  <div class="heading"><div><h2>Réglages</h2><p>Personnalise ton expérience ATHLETICA.</p></div></div>
-  <div class="card">
-    <div class="listhead" style="margin-top:0"><h3>Apparence</h3></div>
-    <p class="settings-note">Choisis ton thème préféré. Ton choix est mémorisé sur cet appareil et peut être modifié à tout moment.</p>
-    <div class="theme-options" role="group" aria-label="Choisir le thème">
-      <button class="theme-option light" type="button" data-theme-choice="light" aria-pressed="false"><span class="theme-swatch"><span></span><span></span></span><strong>Clair</strong></button>
-      <button class="theme-option dark" type="button" data-theme-choice="dark" aria-pressed="false"><span class="theme-swatch"><span></span><span></span></span><strong>Sombre</strong></button>
-      <button class="theme-option auto" type="button" data-theme-choice="auto" aria-pressed="false"><span class="theme-swatch"><span></span><span></span></span><strong>Automatique</strong></button>
-    </div>
-    <p class="settings-note" id="themeStatus" style="margin-top:14px">Le thème automatique suit les préférences de ton appareil.</p>
-  </div>
-  <div class="card" style="margin-top:14px">
-    <div class="listhead" style="margin-top:0"><h3>Données et sauvegardes</h3></div>
-    <p class="settings-note">Tes séances restent enregistrées localement dans ce navigateur. Pense à exporter régulièrement une sauvegarde JSON avec le bouton en haut de l'application.</p>
-  </div>
+<section class="page" id="shoes">
+<div class="heading"><div><h2>Mes chaussures</h2><p>Suivi du kilométrage et de l'usure de chaque paire.</p></div></div>
+<div class="notice">Le kilométrage est calculé à partir des sorties auxquelles tu associes une paire. Pour les anciennes courses, tu peux ajouter un kilométrage de départ à chaque chaussure.</div>
+<div class="card">
+<h3 style="margin-top:0">Ajouter une paire</h3>
+<form id="shoeForm"><div class="formgrid">
+<div class="field"><label>Modèle</label><input name="name" required placeholder="Ex. ASICS Novablast 5"></div>
+<div class="field"><label>Seuil indicatif (km)</label><input name="target" type="number" min="100" max="2000" value="700" required></div>
+<div class="field"><label>Kilométrage déjà parcouru (km)</label><input name="baseKm" type="number" min="0" step=".1" value="0"></div>
+</div><div class="form-actions"><button class="btn primary" type="submit">Ajouter la paire</button></div></form>
+</div>
+<div class="grid" id="shoeCards" style="margin-top:14px"></div>
+<div class="section-title">Conseils d'utilisation</div>
+<div class="card"><p style="margin-top:0">Le seuil affiché est un repère, pas une date d'expiration. L'usure réelle dépend de ton poids, de ta foulée, des surfaces et de l'état de la semelle.</p><p class="muted" style="margin-bottom:0">Pense à sélectionner tes chaussures dans le formulaire de chaque sortie pour que le suivi reste précis.</p></div>
 </section>
-</main><div class="footer">ATHLETICA · Version 3.0 · Tes données restent sur cet appareil</div></div>
+</main><div class="footer">ATHLETICA · Version 3.1 · Tes données restent sur cet appareil</div></div>
 <script>
-
-const THEME_KEY='athletica-theme';
-function getSystemTheme(){return window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}
-function applyTheme(choice){
-  const resolved=choice==='auto'?getSystemTheme():choice;
-  document.documentElement.dataset.theme=resolved;
-  document.querySelectorAll('[data-theme-choice]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.themeChoice===choice)));
-  const status=document.getElementById('themeStatus');
-  if(status) status.textContent=choice==='auto'?'Le thème suit automatiquement les préférences de ton iPhone ou iPad.':choice==='light'?'Le thème clair est activé.':'Le thème sombre est activé.';
-}
-let themeChoice=localStorage.getItem(THEME_KEY)||'auto';
-applyTheme(themeChoice);
-document.querySelectorAll('[data-theme-choice]').forEach(b=>b.addEventListener('click',()=>{
-  themeChoice=b.dataset.themeChoice;localStorage.setItem(THEME_KEY,themeChoice);applyTheme(themeChoice);
-}));
-if(window.matchMedia){
-  const media=window.matchMedia('(prefers-color-scheme: light)');
-  media.addEventListener?.('change',()=>{if(themeChoice==='auto')applyTheme('auto')});
-}
-
-const KEY='athletica-v1';let data={runs:[],gym:[],body:[],planned:[]};
-try{data={...data,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){} data.planned=data.planned||[]; data.runs=data.runs||[];
+const KEY='athletica-v1';let data={runs:[],gym:[],body:[],planned:[],shoes:[]};
+try{data={...data,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){} data.planned=data.planned||[]; data.runs=data.runs||[]; data.gym=data.gym||[]; data.body=data.body||[];
+data.shoes=data.shoes||[
+{id:'shoe-evo',name:'Adidas Adizero Evo SL',target:700,active:true},
+{id:'shoe-winflo',name:'Nike Zoom Winflo 8',target:600,active:true},
+{id:'shoe-ultra',name:'Adidas Ultraboost 20',target:700,active:true},
+{id:'shoe-pegtrail',name:'Nike Pegasus Trail 2',target:650,active:true}
+];
 const $=s=>document.querySelector(s), today=new Date().toISOString().slice(0,10);
 document.querySelectorAll('input[type=date]').forEach(x=>x.value=today);
 $('#today').textContent=new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
@@ -167,7 +136,46 @@ function parseDecathlonWorkbook(sheets){let summary=sheets['resume']||sheets['su
 function parseDecathlonRows(rows){let date=valueAfterLabel(rows,['date']),dist=valueAfterLabel(rows,['distance']),dur=valueAfterLabel(rows,['duree','duration','temps total','temps de pratique']),km=parseFloat(String(dist).replace(',','.').replace(/[^0-9.]/g,'')),mins=toMinutes(dur);if(!km||mins===null)throw Error('Distance et durée non reconnues dans ce fichier.');let d=new Date(date);return {date:Number.isNaN(d.getTime())?today:d.toISOString().slice(0,10),distance:km,duration:mins,type:'Footing',notes:'Import Decathlon Coach — vérifie les valeurs.'}}
 $('#importDecathlon').onclick=async()=>{let file=$('#decathlonFile').files[0];if(!file){alert('Choisis un fichier GPX ou Excel.');return}try{let obj=await parseDecathlonFile(file);window.pendingDecathlon=obj;$('#importPreview').innerHTML=`Fichier analysé : <b>${esc(file.name)}</b><br>${obj.date} · ${obj.distance.toFixed(2)} km · ${durationText(obj.duration)}${obj.startTime?' · départ '+obj.startTime:''}<br><button class="btn primary small" id="confirmDecathlon" type="button">Ajouter cette course</button>`;$('#confirmDecathlon').onclick=()=>{data.runs.push({...obj,id:crypto.randomUUID()});save();$('#importPreview').textContent='Course importée.';$('#decathlonFile').value=''}}catch(err){$('#importPreview').textContent=err.message}};
 
+
+function shoeKm(shoe){
+ const logged=data.runs.filter(r=>String(r.shoes||'').trim().toLowerCase()===shoe.name.toLowerCase()).reduce((a,r)=>a+(+r.distance||0),0);
+ return (+shoe.baseKm||0)+logged;
+}
+function renderShoes(){
+ const active=data.shoes.filter(x=>x.active!==false);
+ $('#shoeCards').innerHTML=active.map(sh=>{
+  const km=shoeKm(sh),target=Math.max(100,+sh.target||700),pct=Math.min(100,km/target*100),left=Math.max(0,target-km);
+  const color=pct>=90?'var(--red)':pct>=75?'var(--orange)':'var(--accent)';
+  return `<article class="shoe-card"><div class="shoe-top"><div class="shoe-name">${esc(sh.name)}</div><span class="pill">${pct>=90?'À surveiller':pct>=75?'Usure avancée':'En service'}</span></div><div class="shoe-km">${km.toFixed(1)} <span class="muted" style="font-size:13px">km</span></div><div class="shoe-meta">${left.toFixed(1)} km avant le seuil indicatif de ${target} km</div><div class="progress"><span style="width:${pct}%;background:${color}"></span></div><div class="shoe-meta">${pct.toFixed(0)} % du seuil indicatif</div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:13px"><button class="edit" onclick="editShoe('${sh.id}')">Modifier</button><button class="delete" onclick="removeShoe('${sh.id}')">Archiver</button></div></article>`;
+ }).join('')||'<div class="empty">Aucune paire active. Ajoute tes chaussures ci-dessus.</div>';
+ $('#shoeOptions').innerHTML=active.map(x=>`<option value="${esc(x.name)}"></option>`).join('');
+ $('#dashboardShoes').innerHTML=active.map(sh=>`<div style="display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)"><span>${esc(sh.name)}</span><b>${shoeKm(sh).toFixed(1)} km</b></div>`).join('')||'<div class="empty">Ajoute tes chaussures dans l’onglet Chaussures.</div>';
+}
+function editShoe(id){
+ const sh=data.shoes.find(x=>x.id===id);if(!sh)return;
+ let name=prompt('Nom de la paire',sh.name);if(name===null)return;
+ let target=prompt('Seuil indicatif en km',sh.target||700);if(target===null)return;
+ let base=prompt('Kilométrage déjà parcouru avant ATHLETICA',sh.baseKm||0);if(base===null)return;
+ if(!name.trim()||!Number.isFinite(+target)||+target<100||!Number.isFinite(+base)||+base<0)return alert('Valeurs invalides.');
+ Object.assign(sh,{name:name.trim(),target:+target,baseKm:+base});save();
+}
+function removeShoe(id){if(confirm('Archiver cette paire ? Les sorties déjà associées restent dans ton historique.')){let sh=data.shoes.find(x=>x.id===id);if(sh)sh.active=false;save()}}
+function updateDashboardExtras(){
+ const now=new Date(),monday=new Date(now);monday.setDate(now.getDate()-((now.getDay()+6)%7));monday.setHours(0,0,0,0);
+ const rs=data.runs.filter(r=>new Date(r.date+'T00:00:00')>=monday);
+ const km=rs.reduce((a,r)=>a+(+r.distance||0),0),mins=rs.reduce((a,r)=>a+(+r.duration||0),0);
+ $('#weekKm').textContent=km.toFixed(1)+' km';$('#weekRuns').textContent=rs.length+' sortie'+(rs.length>1?'s':'');
+ $('#weekPace').textContent=km&&mins?pace(km,mins):'—';
+ const goal=Number(localStorage.getItem('athletica-week-goal')||20);
+ $('#weekGoalText').textContent=km.toFixed(1)+' / '+goal+' km';
+ $('#weekGoalText').style.cursor='pointer';$('#weekGoalText').title='Toucher pour modifier l’objectif';$('#weekGoalText').onclick=()=>{let v=prompt('Objectif hebdomadaire de course (km)',goal);if(v!==null&&Number.isFinite(+v)&&+v>0&&+v<300){localStorage.setItem('athletica-week-goal',+v);updateDashboardExtras()}};
+ const last=[...data.runs].sort((a,b)=>b.date.localeCompare(a.date))[0];
+ $('#lastRunDate').textContent=last?new Date(last.date+'T00:00:00').toLocaleDateString('fr-FR',{day:'2-digit',month:'short'}):'—';
+ $('#lastRunDetail').textContent=last?`${(+last.distance).toFixed(1)} km · ${pace(last.distance,last.duration)}`:'Aucune sortie';
+}
+
 function render(){
+renderShoes();updateDashboardExtras();
 $('#totalKm').textContent=data.runs.reduce((a,x)=>a+x.distance,0).toFixed(1)+' km';$('#runCount').textContent=data.runs.length;
 $('#gymCount').textContent=new Set(data.gym.map(x=>x.date+'|'+x.session)).size;
 let last=[...data.body].sort((a,b)=>b.date.localeCompare(a.date))[0];$('#lastWeight').textContent=last?.weight?last.weight+' kg':'—';
@@ -181,7 +189,7 @@ let max=Math.max(1,...weeks.map(x=>x.km));$('#runChart').innerHTML=weeks.map(x=>
 $('#allVolume').textContent=Math.round(volume).toLocaleString('fr-FR')+' kg';$('#avgRun').textContent=data.runs.length?(data.runs.reduce((a,x)=>a+x.distance,0)/data.runs.length).toFixed(1)+' km':'—';
 let fastest=data.runs.filter(x=>x.distance>0&&x.duration>0).sort((a,b)=>a.duration/a.distance-b.duration/b.distance)[0];$('#bestPace').textContent=fastest?pace(fastest.distance,fastest.duration):'—';$('#bodyCount').textContent=data.body.length;
 }
-document.querySelectorAll('#nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===b.dataset.page))}));
+document.querySelectorAll('#nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===b.dataset.page));if(b.dataset.page==='shoes')renderShoes()}));
 function parseDuration(value){
  let v=String(value||'').trim(),p=v.split(':').map(x=>x.trim());
  if(p.length===2&&p.every(x=>/^\d+$/.test(x))){let m=+p[0],s=+p[1];if(s>59)return null;return m+s/60}
@@ -229,10 +237,11 @@ function editRecord(kind,id){
 }
 bindRunning();
 $('#gymForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target);data.gym.push({id:crypto.randomUUID(),date:f.get('date'),session:f.get('session'),exercise:f.get('exercise'),muscle:f.get('muscle'),set:+f.get('set'),reps:+f.get('reps'),weight:+f.get('weight'),rir:f.get('rir')===''?null:+f.get('rir'),rest:+f.get('rest')||null,notes:f.get('notes')});save();e.target.reset();e.target.date.value=today;e.target.set.value=1;alert('Série ajoutée !')});
+$('#shoeForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target),name=String(f.get('name')).trim();if(!name)return;data.shoes.push({id:crypto.randomUUID(),name,target:+f.get('target')||700,baseKm:+f.get('baseKm')||0,active:true});e.target.reset();e.target.elements.target.value=700;e.target.elements.baseKm.value=0;save();alert('Paire ajoutée !')});
 $('#bodyForm').addEventListener('submit',e=>{e.preventDefault();let f=new FormData(e.target);let obj={id:crypto.randomUUID(),date:f.get('date')};['weight','waist','chest','arm'].forEach(k=>obj[k]=f.get(k)===''?null:+f.get(k));if(Object.values(obj).slice(2).every(x=>x===null)){alert('Saisis au moins une mesure.');return}data.body.push(obj);save();e.target.reset();e.target.date.value=today;alert('Mesures enregistrées !')});
 $('#exportBtn').onclick=()=>{let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='athletica-sauvegarde.json';a.click();URL.revokeObjectURL(a.href)};
 $('#importBtn').onclick=()=>$('#importFile').click();
-$('#importFile').onchange=async e=>{try{let obj=JSON.parse(await e.target.files[0].text());if(!obj.runs||!obj.gym||!obj.body)throw Error();if(confirm('Importer cette sauvegarde et remplacer les données actuelles ?')){data={...obj,planned:obj.planned||[],runs:obj.runs||[],gym:obj.gym||[],body:obj.body||[]};save();alert('Sauvegarde importée.')}}catch(err){alert('Fichier de sauvegarde invalide.')}e.target.value=''};
+$('#importFile').onchange=async e=>{try{let obj=JSON.parse(await e.target.files[0].text());if(!obj.runs||!obj.gym||!obj.body)throw Error();if(confirm('Importer cette sauvegarde et remplacer les données actuelles ?')){data={...obj,planned:obj.planned||[],runs:obj.runs||[],gym:obj.gym||[],body:obj.body||[],shoes:obj.shoes||data.shoes||[]};save();alert('Sauvegarde importée.')}}catch(err){alert('Fichier de sauvegarde invalide.')}e.target.value=''};
 render();
 if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script></body></html>

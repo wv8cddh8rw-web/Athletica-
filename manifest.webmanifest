@@ -3,8 +3,8 @@
   "short_name": "Athletica",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f6f7f8",
-  "theme_color": "#f6f7f8",
+  "background_color": "#0b1220",
+  "theme_color": "#101827",
   "lang": "fr",
   "icons": [
     {

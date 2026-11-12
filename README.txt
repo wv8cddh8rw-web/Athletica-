@@ -1,19 +1,14 @@
-ATHLETICA — Version 3.0 (première refonte visuelle)
+ATHLETICA 3.1 — Mise à jour
 
-MISE À JOUR
-1. Décompresser le ZIP.
-2. Dans le dépôt GitHub Pages Athletica-, remplacer les fichiers existants par les 6 fichiers du dossier athletica-v3.
-3. Commit les modifications.
-4. Attendre la fin du déploiement GitHub Pages, puis actualiser le site dans Safari.
-5. Si l'ancienne version reste affichée, fermer l'application installée puis la rouvrir.
+Contenu :
+- Accueil enrichi : statistiques de la semaine, allure moyenne, objectif hebdomadaire modifiable en touchant la valeur, dernière course et résumé des chaussures.
+- Gestion des chaussures : 4 paires préchargées, kilométrage automatique depuis les courses associées, seuil d'usure indicatif, ajout/modification/archivage.
+- Conservation de la clé de stockage existante athletica-v1 et des données de course, musculation, mensurations et planning.
 
-NOUVEAUTÉS
-- Refonte visuelle plus épurée.
-- Thèmes Clair, Sombre et Automatique dans Réglages > Apparence.
-- Le choix du thème est enregistré séparément des séances.
-- Conservation de la clé de stockage existante athletica-v1 : les données locales ne sont pas migrées ni effacées par cette version.
-- Les fonctions de course, musculation, mensurations, planning, historique, import/export et édition restent basées sur le code V2 fourni.
-
-IMPORTANT
-Avant toute mise à jour, conserve ton fichier athletica-sauvegarde.json.
-Le stockage reste local au navigateur (pas de synchronisation cloud).
+IMPORTANT :
+- Avant mise à jour, conserver le fichier athletica-sauvegarde.json.
+- Uploader les 6 fichiers de ce dossier à la racine du dépôt GitHub, en remplaçant les fichiers existants.
+- Ne pas uploader le dossier parent ni le ZIP lui-même.
+- Le kilométrage de chaque paire combine le kilométrage de départ renseigné et les sorties enregistrées avec exactement le même nom de chaussure.
+- Les seuils (600–700 km) sont des repères modifiables, pas des limites médicales ou garanties.
+- Tester l'application et vérifier les données après déploiement.
