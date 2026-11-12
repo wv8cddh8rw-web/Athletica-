@@ -60,7 +60,7 @@ body:not(.light) .btn{background:#242b37;border-color:#303846;color:#f4f5f7}body
 .top{padding-top:env(safe-area-inset-top,0px)}.edit,.delete{min-height:40px;min-width:44px}</style><script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script></head>
 <body><div class="shell">
 <header class="top"><div class="brand"><div class="logo">A</div><div><h1>ATHLETICA</h1><p>Ton espace de progression</p></div></div><div class="top-actions"><button class="btn small" id="exportBtn">↧ <span>Exporter</span></button><button class="btn small" id="importBtn">↥ <span>Importer</span></button><input id="importFile" type="file" accept="application/json" class="hidden"></div></header>
-<nav class="nav" id="nav"><button class="active" data-page="dashboard">Vue d'ensemble</button><button data-page="running">Course</button><button data-page="planned">Planning course</button><button data-page="gym">Musculation</button><button data-page="body">Mensurations</button><button data-page="history">Historique</button><button data-page="shoes">Chaussures</button><button data-page="settings">Réglages</button></nav>
+<nav class="nav" id="nav"><button class="active" data-page="dashboard">Vue d'ensemble</button><button data-page="running">Course</button><button data-page="planned">Planning course</button><button data-page="gym">Musculation</button><button data-page="body">Mensurations</button><button data-page="history">Historique</button><button data-page="shoes">Chaussures</button><button data-page="calories">Calories</button><button data-page="settings">Réglages</button></nav>
 <main>
 <section class="page active" id="dashboard"><div class="heading"><div><h2>Bonjour, athlète.</h2><p>Voici le résumé de ton entraînement.</p></div><span class="pill" id="today"></span></div>
 <div class="card" id="backupNote" style="display:none;margin-bottom:14px;font-size:13px"></div>
@@ -128,6 +128,17 @@ body:not(.light) .btn{background:#242b37;border-color:#303846;color:#f4f5f7}body
 <div class="section-title">Conseils d'utilisation</div>
 <div class="card"><p style="margin-top:0">Le seuil affiché est un repère, pas une date d'expiration. L'usure réelle dépend de ton poids, de ta foulée, des surfaces et de l'état de la semelle.</p><p class="muted" style="margin-bottom:0">Pense à sélectionner tes chaussures dans le formulaire de chaque sortie pour que le suivi reste précis.</p></div>
 </section>
+<section class="page" id="calories"><div class="heading"><div><h2>Calories dépensées</h2><p>Suivi hebdomadaire des calories renseignées pour tes sorties de course.</p></div></div>
+<div class="grid">
+<div class="card metric"><div class="label">Cette semaine</div><div class="value" id="calWeek">—</div><div class="sub" id="calWeekSub">Calories renseignées</div></div>
+<div class="card metric"><div class="label">Cette semaine · séances</div><div class="value" id="calWeekRuns">0</div><div class="sub">Avec calories connues</div></div>
+<div class="card metric"><div class="label">Ce mois-ci</div><div class="value" id="calMonth">—</div><div class="sub">Calories renseignées</div></div>
+<div class="card metric"><div class="label">Moyenne par sortie</div><div class="value" id="calAverage">—</div><div class="sub">Uniquement les sorties renseignées</div></div>
+</div>
+<div class="section-title">Évolution — 8 dernières semaines</div><div class="card"><div class="chart" id="calorieChart"><div class="empty">Ajoute des calories à tes sorties pour voir ton évolution.</div></div><p class="muted" style="font-size:11px;margin:4px 0 0">Les semaines commencent le lundi. Les semaines sans calories renseignées ne sont pas interprétées comme une dépense nulle.</p></div>
+<div class="section-title">Détail des sorties</div><div class="card"><div class="tablewrap" style="margin-top:0"><table style="min-width:500px"><thead><tr><th>Date</th><th>Distance</th><th>Durée</th><th>Calories</th></tr></thead><tbody id="calorieRows"></tbody></table></div></div>
+<div class="notice" style="margin-top:14px">Important : ce total correspond uniquement aux calories indiquées dans tes activités (Decathlon Coach ou saisie manuelle). Une séance sans donnée calorique n'est pas comptée comme 0 kcal. Il s'agit de calories dépensées pendant les séances, pas de ton déficit calorique total ni d'une mesure directe de perte de graisse.</div>
+</section>
 <section class="page" id="settings">
 <div class="heading"><div><h2>Réglages</h2><p>Personnalise ATHLETICA selon tes préférences.</p></div></div>
 <div class="card" style="margin-bottom:14px"><h3 style="margin-top:0">Apparence</h3><div class="field"><label for="themeSelect">Thème de l’application</label><select id="themeSelect"><option value="dark">Mode sombre</option><option value="light">Mode clair</option></select></div><p class="muted" style="font-size:12px;margin-bottom:0">Ton choix est mémorisé sur cet appareil. Tu peux le changer à tout moment.</p></div>
@@ -135,9 +146,9 @@ body:not(.light) .btn{background:#242b37;border-color:#303846;color:#f4f5f7}body
 <div class="card"><h3 style="margin-top:0">Sauvegarde et données</h3><p class="muted" style="font-size:13px">Tes activités sont enregistrées dans le stockage local de ce navigateur. Exporte régulièrement une sauvegarde JSON. Garde ton fichier athletica-sauvegarde.json dans un endroit sûr. Une sauvegarde exportée est la meilleure protection contre une perte de données.</p><div class="form-actions"><button class="btn" id="settingsExport">Exporter mes données</button><button class="btn" id="settingsImport">Importer une sauvegarde</button></div></div>
 <div class="card" style="margin-top:14px"><h3 style="margin-top:0">À propos</h3><p class="muted" style="font-size:13px;margin-top:0" id="aboutInfo"></p><p class="muted" style="font-size:12px;margin-bottom:0">Safari et l’application installée sur l’écran d’accueil ont chacun leurs propres données : elles ne se synchronisent pas. Pour passer de l’un à l’autre, exporte puis importe une sauvegarde.</p></div>
 </section>
-</main><div class="footer">ATHLETICA · Version 3.4.0 · Ton entraînement, clairement</div></div>
+</main><div class="footer">ATHLETICA · Version 3.5.0 · Ton entraînement, clairement</div></div>
 <script>
-const KEY='athletica-v1',APP_VERSION='3.4.0';let data={runs:[],gym:[],body:[],planned:[],shoes:[]};
+const KEY='athletica-v1',APP_VERSION='3.5.0';let data={runs:[],gym:[],body:[],planned:[],shoes:[]};
 try{data={...data,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){} data.planned=data.planned||[]; data.runs=data.runs||[]; data.gym=data.gym||[]; data.body=data.body||[];
 data.shoes=data.shoes||[
 {id:'shoe-evo',name:'Adidas Adizero Evo SL',target:700,active:true},
@@ -252,11 +263,31 @@ function updateDashboardExtras(){
  $('#lastRunDetail').textContent=last?`${(+last.distance).toFixed(1)} km · ${pace(last.distance,last.duration)}`:'Aucune sortie';
 }
 
+function startOfWeek(d){const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());x.setDate(x.getDate()-((x.getDay()+6)%7));x.setHours(0,0,0,0);return x}
+function renderCalories(){
+ const valid=data.runs.filter(r=>r.date&&parseDateKey(r.date));
+ const known=valid.filter(r=>r.calories!==null&&r.calories!==undefined&&r.calories!==''&&Number.isFinite(+r.calories)&&+r.calories>0);
+ const now=new Date(),weekStart=startOfWeek(now),weekKey=dateKey(weekStart),monthKey=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
+ const inWeek=r=>{const d=parseDateKey(r.date);return d&&dateKey(startOfWeek(d))===weekKey};
+ const wk=known.filter(inWeek),wkRuns=valid.filter(inWeek),month=known.filter(r=>String(r.date).slice(0,7)===monthKey);
+ const sum=a=>a.reduce((s,r)=>s+(+r.calories||0),0);
+ $('#calWeek').textContent=wk.length?Math.round(sum(wk)).toLocaleString('fr-FR')+' kcal':'—';
+ $('#calWeekSub').textContent=wk.length?`${wk.length} sortie(s) avec données · ${wkRuns.length-wk.length} sans données`:'Aucune calorie renseignée cette semaine';
+ $('#calWeekRuns').textContent=wk.length;
+ $('#calMonth').textContent=month.length?Math.round(sum(month)).toLocaleString('fr-FR')+' kcal':'—';
+ $('#calAverage').textContent=known.length?Math.round(sum(known)/known.length).toLocaleString('fr-FR')+' kcal':'—';
+ const weeks=[];for(let i=7;i>=0;i--){const d=new Date(weekStart);d.setDate(d.getDate()-7*i);const key=dateKey(d),end=new Date(d);end.setDate(end.getDate()+6);const rr=known.filter(r=>{const rd=parseDateKey(r.date);return rd&&dateKey(startOfWeek(rd))===key});weeks.push({key,label:d.toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit'}),value:sum(rr),count:rr.length})}
+ const max=Math.max(1,...weeks.map(w=>w.value));
+ $('#calorieChart').innerHTML=weeks.some(w=>w.count)?weeks.map(w=>`<div class="barwrap"><div class="barval">${w.count?Math.round(w.value).toLocaleString('fr-FR'):'—'}</div><div class="bar" style="height:${w.count?Math.max(3,w.value/max*100):0}%;${w.count?'':'opacity:.15'}"></div><div class="barlabel">${w.label}</div></div>`).join(''):'<div class="empty">Aucune donnée calorique enregistrée pour le moment.</div>';
+ const rows=[...valid].sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,20);
+ $('#calorieRows').innerHTML=rows.map(r=>`<tr><td>${esc(r.date)}</td><td>${(+r.distance||0).toFixed(2)} km</td><td>${durationText(r.duration)}</td><td>${r.calories!==null&&r.calories!==undefined&&r.calories!==''&&Number.isFinite(+r.calories)&&+r.calories>0?Math.round(+r.calories).toLocaleString('fr-FR')+' kcal':'Non renseigné'}</td></tr>`).join('')||'<tr><td colspan="4" class="empty">Aucune sortie enregistrée.</td></tr>';
+}
+
 function updateSettingsInfo(){const el=$('#aboutInfo');if(!el)return;let len=0;try{len=(localStorage.getItem(KEY)||'').length}catch(e){}const kb=Math.round(len/1024),pct=Math.min(100,Math.round(len/5242880*100)),lb=+localStorage.getItem('athletica-last-backup')||0,days=lb?Math.floor((Date.now()-lb)/864e5):null;
 el.innerHTML=`Version ${APP_VERSION}<br>Stockage utilisé : ${kb} Ko (environ ${pct} % de la limite indicative de 5 Mo)${pct>=70?' — exporte une sauvegarde bientôt':''}<br>Dernière sauvegarde : ${lb?(days===0?'aujourd’hui':'il y a '+days+' jour'+(days>1?'s':'')):'jamais sur cet appareil'}`;
 const n=$('#backupNote');if(n){const stale=(data.runs.length+data.gym.length+data.body.length)>0&&(lb===0||days>14);n.style.display=stale?'':'none';n.textContent=lb?`Dernière sauvegarde il y a ${days} jours. Pense à exporter une sauvegarde (Réglages).`:'Aucune sauvegarde faite sur cet appareil. Exporte-en une depuis Réglages.'}}
 function render(){
-renderShoes();updateDashboardExtras();updateSettingsInfo();
+renderShoes();updateDashboardExtras();renderCalories();updateSettingsInfo();
 $('#totalKm').textContent=data.runs.reduce((a,x)=>a+x.distance,0).toFixed(1)+' km';$('#runCount').textContent=data.runs.length;
 $('#gymCount').textContent=new Set(data.gym.map(x=>x.date+'|'+x.session)).size;
 let last=[...data.body].sort((a,b)=>b.date.localeCompare(a.date))[0];$('#lastWeight').textContent=last?.weight?last.weight+' kg':'—';
@@ -270,7 +301,7 @@ let max=Math.max(1,...weeks.map(x=>x.km));$('#runChart').innerHTML=weeks.map(x=>
 $('#allVolume').textContent=Math.round(volume).toLocaleString('fr-FR')+' kg';$('#avgRun').textContent=data.runs.length?(data.runs.reduce((a,x)=>a+x.distance,0)/data.runs.length).toFixed(1)+' km':'—';
 let fastest=data.runs.filter(x=>x.distance>0&&x.duration>0).sort((a,b)=>a.duration/a.distance-b.duration/b.distance)[0];$('#bestPace').textContent=fastest?pace(fastest.distance,fastest.duration):'—';$('#bodyCount').textContent=data.body.length;
 }
-document.querySelectorAll('#nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===b.dataset.page));if(b.dataset.page==='shoes')renderShoes()}));
+document.querySelectorAll('#nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===b.dataset.page));if(b.dataset.page==='shoes')renderShoes();if(b.dataset.page==='calories')renderCalories()}));
 function parseDuration(value){
  let v=String(value||'').trim(),p=v.split(':').map(x=>x.trim());
  if(p.length===2&&p.every(x=>/^\d+$/.test(x))){let m=+p[0],s=+p[1];if(s>59)return null;return m+s/60}
