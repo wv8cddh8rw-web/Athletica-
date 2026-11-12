@@ -13,3 +13,8 @@ Avant mise à jour : exporter une sauvegarde JSON et conserver précieusement at
 Installation : décompresser le ZIP puis déposer les six fichiers de ce dossier à la racine du dépôt GitHub Pages, en remplaçant les fichiers correspondants. Ne pas téléverser le ZIP lui-même. La publication n'est effective qu'après le commit et le déploiement GitHub Pages.
 
 Tests : vérifier le JavaScript, le manifeste et l'intégrité du ZIP. Faire ensuite un essai réel sur iPhone/iPad et vérifier que les activités avec calories apparaissent correctement.
+
+
+ATHLETICA 3.5.1
+- L’historique des courses est désormais trié automatiquement de la plus récente à la plus ancienne, selon la date puis l’heure de départ.
+- Le tri est réappliqué après ajout, import, modification ou suppression. Les courses sans heure sont placées avant celles avec une heure le même jour.
