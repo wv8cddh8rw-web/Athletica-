@@ -1,14 +1,19 @@
-ATHLETICA 3.1 — Mise à jour
+ATHLETICA 3.3.1 — Apple Fitness Edition
 
-Contenu :
-- Accueil enrichi : statistiques de la semaine, allure moyenne, objectif hebdomadaire modifiable en touchant la valeur, dernière course et résumé des chaussures.
-- Gestion des chaussures : 4 paires préchargées, kilométrage automatique depuis les courses associées, seuil d'usure indicatif, ajout/modification/archivage.
-- Conservation de la clé de stockage existante athletica-v1 et des données de course, musculation, mensurations et planning.
+Contenu : index.html, manifest.webmanifest, sw.js, icones 192/512.
 
-IMPORTANT :
-- Avant mise à jour, conserver le fichier athletica-sauvegarde.json.
-- Uploader les 6 fichiers de ce dossier à la racine du dépôt GitHub, en remplaçant les fichiers existants.
-- Ne pas uploader le dossier parent ni le ZIP lui-même.
-- Le kilométrage de chaque paire combine le kilométrage de départ renseigné et les sorties enregistrées avec exactement le même nom de chaussure.
-- Les seuils (600–700 km) sont des repères modifiables, pas des limites médicales ou garanties.
-- Tester l'application et vérifier les données après déploiement.
+Cette version conserve la clé de stockage locale athletica-v1, les huit sections et les fonctions existantes. Le thème clair est présenté par défaut ; le thème sombre reste disponible dans Réglages.
+
+Corrections de fiabilité :
+- dates GPX conservées selon le fuseau local de l'activité ;
+- dates Excel/CSV interprétées sans décalage UTC pour les dates sans heure ;
+- calcul des semaines avec des clés calendaires locales ;
+- moyennes de fréquence cardiaque par kilomètre calculées à partir des échantillons réellement présents dans chaque segment ;
+- service worker limité aux caches ATHLETICA, sans supprimer les caches d'autres applications ;
+- navigation réseau prioritaire avec repli hors ligne sur la page mise en cache.
+
+Contrôles effectués : syntaxe JavaScript, analyse HTML, unicité des identifiants, validité JSON du manifeste, tests de dates dans le fuseau Asia/Jerusalem et intégrité de l'archive ZIP.
+
+Limite : des essais d'interface et d'import avec des fichiers Decathlon réels sur iPhone/iPad restent nécessaires. Ne pas effacer les données du navigateur. Faire une sauvegarde JSON avant toute mise à jour.
+
+Installation : remplacer les six fichiers du dépôt GitHub Pages par ceux de ce dossier, après avoir conservé une sauvegarde JSON récente. Ne pas téléverser le ZIP lui-même.
