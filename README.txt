@@ -1,4 +1,4 @@
-ATHLETICA 3.5.0 — Suivi des calories hebdomadaires
+ATHLETICA 3.7.0 — Tableau de bord de progression musculaire
 
 Contenu : index.html, manifest.webmanifest, sw.js, icon-192.png, icon-512.png, README.txt.
 
@@ -18,3 +18,8 @@ Tests : vérifier le JavaScript, le manifeste et l'intégrité du ZIP. Faire ens
 ATHLETICA 3.5.1
 - L’historique des courses est désormais trié automatiquement de la plus récente à la plus ancienne, selon la date puis l’heure de départ.
 - Le tri est réappliqué après ajout, import, modification ou suppression. Les courses sans heure sont placées avant celles avec une heure le même jour.
+
+
+Version 3.7.0 — Tableau de bord musculation : records personnels par exercice, séries validées par groupe musculaire sur les 7 derniers jours, progression hebdomadaire sur 8 semaines et amélioration des statistiques par exercice. La clé localStorage athletica-v1 est conservée pour préserver les données existantes.
+
+Les statistiques reposent sur les séries validées. Le volume musculaire est compté en nombre de séries ; les charges ne sont pas additionnées entre haltères, machines et poids du corps car ces valeurs ne sont pas directement comparables.
