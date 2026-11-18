@@ -1,4 +1,4 @@
-ATHLETICA 3.8.2 — Import FIT contrôlé, mesures individuelles et archivage complet
+ATHLETICA 3.8.3 — Import FIT contrôlé, mesures individuelles et archivage complet
 
 Contenu : index.html, manifest.webmanifest, sw.js, icon-192.png, icon-512.png, README.txt.
 
@@ -102,3 +102,18 @@ CORRECTION COMPATIBILITÉ GARMIN SDK
 - Les messages sont lus sous les clés officielles du SDK : sessionMesgs, recordMesgs, lapMesgs, fileIdMesgs et activityMesgs (et non sous des noms abrégés).
 - Le SDK Garmin documente le regroupement des messages par type et les clés profile correspondantes ; les champs positionLat/positionLong sont des semicircles et sont convertis en degrés uniquement pour la trace de l’application. Les messages FIT originaux et le fichier binaire préservé restent inchangés.
 - Les fichiers contenant plus d’une session sont refusés, y compris lorsqu’un message activity annonce numSessions supérieur à 1.
+
+ATHLETICA 3.8.3 — ANALYSE CARDIOVASCULAIRE
+- Ajout des champs FC maximale et FC minimale dans la saisie manuelle et l'édition des sorties.
+- À l'import FIT, FC moyenne, maximale et minimale proviennent des mesures record individuelles valides (30–240 bpm). Les valeurs du résumé FIT sont conservées à part.
+- Les mesures cardiaques individuelles horodatées sont conservées dans fitData.heartRate.samples, en plus de l'archive complète des messages FIT et du FIT binaire original (dans la limite existante de 256 Ko).
+- Nouvelle analyse dans Progression : tendances de FC moyenne/maximale/minimale, comparaisons automatiques de sorties de distance similaire (±10 %), allure similaire (±5 %) ou même type de séance.
+- Analyse complémentaire : FC moyenne par kilomètre quand les splits sont disponibles, dérive cardiaque indicative, récupération à 1/2 minutes uniquement si des mesures post-effort sont présentes, zones cardiaques indicatives avec FC max de référence personnalisable, et lecture de l'efficacité allure/FC.
+- Les analyses ne fabriquent aucune donnée. Si l'historique est trop court ou les mesures temporelles manquantes, ATHLETICA l'indique.
+- Les zones utilisent un pourcentage de FC max de référence (209 bpm par défaut pour cette configuration) ; cette valeur est un paramètre de calcul et ne doit pas être interprétée comme une FC max physiologique certaine.
+- La clé localStorage athletica-v1 est conservée. Aucun effacement ni migration destructive.
+
+VALIDATION 3.8.3
+- JavaScript contrôlé par Node.js (node --check).
+- Le fichier FIT de référence déjà fourni sert de référence de mapping : 428 mesures HR valides, moyenne arrondie 171 bpm, maximum 209 bpm, minimum extrait directement des records.
+- La version doit encore être testée dans Safari sur l'appareil avant publication ; le chargement du SDK Garmin dépend du réseau et le test réel du flux d'import reste indispensable.

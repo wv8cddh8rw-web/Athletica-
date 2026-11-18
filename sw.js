@@ -1,4 +1,4 @@
-const CACHE='athletica-v3-8-2';
+const CACHE='athletica-v3-8-3';
 const FILES=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>event.waitUntil((async()=>{
  const cache=await caches.open(CACHE);
