@@ -67,7 +67,7 @@ body:not(.light) .btn{background:#242b37;border-color:#303846;color:#f4f5f7}body
 .gym-prev{font-size:11px;color:var(--muted);padding:8px 10px;background:var(--panel2);border-radius:10px;margin:7px 0}.gym-set-tools{display:flex;gap:5px;align-items:center;justify-content:flex-end}.gym-set-tools button{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:8px;min-width:30px;min-height:30px}.gym-set-tools .done-label{font-size:10px;color:var(--muted)}.gym-ex-chart{height:130px;display:flex;align-items:end;gap:8px;padding:10px 2px 20px}.gym-ex-bar{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:end;height:100%;gap:4px}.gym-ex-bar i{display:block;width:min(28px,80%);background:linear-gradient(180deg,#63d88e,#27b765);border-radius:6px 6px 2px 2px}.gym-ex-bar small{font-size:9px;color:var(--muted)}.gym-ex-bar b{font-size:10px}.goal-row{display:grid;grid-template-columns:1fr auto;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)}.goal-track{height:7px;background:var(--panel2);border-radius:9px;overflow:hidden;margin-top:5px}.goal-track span{display:block;height:100%;background:var(--accent)}.wallpaper-row{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.wallpaper-preview{height:66px;border-radius:10px;background-size:cover;background-position:center}.page.has-wallpaper{position:relative;border-radius:20px;padding:12px;background-size:cover;background-position:center;background-attachment:scroll}.page.has-wallpaper:before{content:'';position:absolute;inset:0;border-radius:20px;background:rgba(255,255,255,.34);backdrop-filter:blur(0px);pointer-events:none}.page.has-wallpaper>*{position:relative;z-index:1}body:not(.light) .page.has-wallpaper:before{background:rgba(10,15,23,.48)}
 .progress-period-note{font-size:11px;color:var(--muted)}.progress-mini{padding:13px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.progress-mini b{font-size:22px;display:block;margin-top:4px}
 
-</style><script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script></head>
+</style></head>
 <body><div class="shell">
 <header class="top"><div class="brand"><div class="logo">A</div><div><h1>ATHLETICA</h1><p>Ton espace de progression</p></div></div><div class="top-actions"><button class="btn small" id="exportBtn">↧ <span>Exporter</span></button><button class="btn small" id="importBtn">↥ <span>Importer</span></button><input id="importFile" type="file" accept="application/json" class="hidden"></div></header>
 <nav class="nav" id="nav"><button class="active" data-page="dashboard">Vue d'ensemble</button><button data-page="running">Course</button><button data-page="planned">Planning course</button><button data-page="gym">Musculation</button><button data-page="body">Mensurations</button><button data-page="history">Progression</button><button data-page="shoes">Chaussures</button><button data-page="calories">Calories</button><button data-page="settings">Réglages</button></nav>
@@ -106,9 +106,9 @@ body:not(.light) .btn{background:#242b37;border-color:#303846;color:#f4f5f7}body
 <div class="field full"><label>Temps de chaque kilomètre (séparés par des virgules)</label><input name="splits" placeholder="Ex. 5:18, 5:15, 5:13, 4:58"><small class="muted">Un temps par kilomètre, au format mm:ss. Pour le dernier kilomètre incomplet, indique sa durée réelle.</small></div>
 <div class="field full"><label>FC moyenne de chaque kilomètre (bpm, séparées par des virgules)</label><input name="splitHR" placeholder="Ex. 145, 151, 158, 162"><small class="muted">Laisse vide si tu ne disposes pas de ces valeurs.</small></div>
 <div class="field full"><label>Notes / sensations</label><textarea name="notes" placeholder="Respiration, jambes, conditions…"></textarea></div></div><div class="form-actions"><button class="btn primary" type="submit">Enregistrer la sortie</button></div></form></div>
-<div class="card" style="margin-top:14px"><div class="listhead" style="margin-top:0"><h3>Importer depuis Decathlon Coach</h3></div><p class="muted" style="font-size:13px">Importe un fichier GPX ou Excel (.xls / .xlsx) exporté depuis Decathlon Coach. Vérifie les données avant de valider.</p><div class="formgrid"><div class="field"><label>Fichier GPX / Excel</label><input id="decathlonFile" type="file"></div><div class="field" style="justify-content:end"><button type="button" class="btn" id="importDecathlon">Analyser le fichier</button></div></div><div id="importPreview" class="muted" style="font-size:13px;margin-top:10px"></div></div>
+<div class="card" style="margin-top:14px"><div class="listhead" style="margin-top:0"><h3>Importer une activité FIT</h3><span class="pill">FIT uniquement</span></div><p class="muted" style="font-size:13px">Sélectionne le fichier .FIT original de ta montre ou de ton service sportif. ATHLETICA vérifie l’en-tête, la taille et les sommes de contrôle avant de présenter les données. Aucun GPX, TCX, Excel ou CSV n’est accepté ici.</p><div class="formgrid"><div class="field"><label>Fichier d’activité FIT</label><input id="fitFile" type="file" accept=".fit,application/octet-stream,application/vnd.ant.fit"></div><div class="field" style="justify-content:end"><button type="button" class="btn" id="analyzeFit">Analyser le fichier FIT</button></div></div><div id="fitImportPreview" class="muted" style="font-size:13px;margin-top:10px" aria-live="polite"></div><div class="muted" style="font-size:11px;margin-top:8px">Les valeurs absentes du fichier restent « non renseignées ». Une activité n’est ajoutée qu’après validation de l’aperçu. Le décodage nécessite une connexion Internet pour charger le SDK FIT Garmin (version épinglée) ; si ce chargement échoue, aucune séance n’est ajoutée. Pour préserver aussi le fichier original dans ta sauvegarde JSON, seuls les FIT de 256 Ko maximum sont acceptés.</div></div>
 <div class="card" style="margin-top:14px"><div class="listhead" style="margin-top:0"><h3>Statistiques de course</h3></div><div class="tabswitch"><button type="button" class="active" data-period="week">Cette semaine</button><button type="button" data-period="month">Ce mois</button></div><div class="grid"><div class="metric"><div class="label">Distance</div><div class="value" id="periodKm">0 km</div></div><div class="metric"><div class="label">Temps total</div><div class="value" id="periodTime">0:00</div></div><div class="metric"><div class="label">Nombre de sorties</div><div class="value" id="periodRuns">0</div></div><div class="metric"><div class="label">Calories</div><div class="value" id="periodCalories">—</div></div></div></div>
-<div class="card" style="margin-top:14px"><div class="listhead" style="margin-top:0"><h3>Records personnels automatiques</h3></div><p class="muted" style="font-size:12px">Calculés à partir des données GPS importées ou des temps de kilomètres saisis. Avec une saisie manuelle, seuls les segments alignés sur les kilomètres renseignés peuvent être évalués précisément.</p><div id="runningRecords" class="formgrid"></div></div>
+<div class="card" style="margin-top:14px"><div class="listhead" style="margin-top:0"><h3>Records personnels automatiques</h3></div><p class="muted" style="font-size:12px">Calculés à partir des distances/horodatages réellement enregistrés dans les fichiers FIT ou des temps de kilomètres saisis. Les données manquantes ne sont pas estimées.</p><div id="runningRecords" class="formgrid"></div></div>
 <div class="listhead"><h3>Historique des sorties</h3><span class="muted" id="runTotalLabel"></span></div><div class="formgrid" style="margin-top:10px"><div class="field"><label>Période</label><select id="filterPeriod"><option value="all">Toutes</option><option value="7">7 derniers jours</option><option value="30">30 derniers jours</option><option value="month">Ce mois</option><option value="year">Cette année</option></select></div><div class="field"><label>Chaussures</label><select id="filterShoes"><option value="all">Toutes les chaussures</option></select></div><div class="field"><label>Type de séance</label><select id="filterType"><option value="all">Tous les types</option><option>Footing</option><option>Fractionné</option><option>Tempo</option><option>Sortie longue</option><option>Récupération</option><option>Test / course</option><option>Autre</option></select></div></div><div class="tablewrap"><table><thead><tr><th>Date</th><th>Heure</th><th>Type</th><th>Distance</th><th>Durée</th><th>Allure</th><th>FC moy.</th><th></th></tr></thead><tbody id="runRows"></tbody></table></div></section>
 <section class="page" id="planned"><div class="heading"><div><h2>Planning de course</h2><p>Prépare tes prochaines séances à l'avance.</p></div></div><div class="card"><form id="planForm"><div class="formgrid"><div class="field"><label>Date prévue</label><input name="date" type="date" required></div><div class="field"><label>Type de séance</label><select name="type"><option>Footing</option><option>Fractionné</option><option>Tempo</option><option>Sortie longue</option><option>Récupération</option><option>Test / course</option><option>Autre</option></select></div><div class="field"><label>Distance prévue (km)</label><input name="distance" type="number" min="0" step=".1" placeholder="Facultatif"></div><div class="field"><label>Durée prévue</label><input name="duration" placeholder="Ex. 30:00"></div><div class="field full"><label>Objectif / contenu</label><textarea name="notes" placeholder="Ex. 30 min faciles, 6 × 400 m…"></textarea></div></div><div class="form-actions"><button class="btn primary" type="submit">Ajouter au planning</button></div></form></div><div class="listhead"><h3>Prochaines séances</h3></div><div id="plannedRows"></div></section>
 <section class="page" id="gym"><div class="heading"><div><h2>Musculation</h2><p>Programmes évolutifs · séances détaillées · progression conservée</p></div></div>
@@ -170,9 +170,9 @@ body:not(.light) .btn{background:#242b37;border-color:#303846;color:#f4f5f7}body
 <div class="card"><h3 style="margin-top:0">Sauvegarde et données</h3><p class="muted" style="font-size:13px">Tes activités sont enregistrées dans le stockage local de ce navigateur. Exporte régulièrement une sauvegarde JSON. Garde ton fichier athletica-sauvegarde.json dans un endroit sûr. Une sauvegarde exportée est la meilleure protection contre une perte de données.</p><div class="form-actions"><button class="btn" id="settingsExport">Exporter mes données</button><button class="btn" id="settingsImport">Importer une sauvegarde</button></div></div>
 <div class="card" style="margin-top:14px"><h3 style="margin-top:0">À propos</h3><p class="muted" style="font-size:13px;margin-top:0" id="aboutInfo"></p><p class="muted" style="font-size:12px;margin-bottom:0">Safari et l’application installée sur l’écran d’accueil ont chacun leurs propres données : elles ne se synchronisent pas. Pour passer de l’un à l’autre, exporte puis importe une sauvegarde.</p></div>
 </section>
-</main><div class="footer">ATHLETICA · Version 3.8.0 · Ton entraînement, clairement</div></div>
+</main><div class="footer">ATHLETICA · Version 3.8.2 · Import FIT intégral</div></div>
 <script>
-const KEY='athletica-v1',APP_VERSION='3.8.0';let data={runs:[],gym:[],body:[],planned:[],shoes:[]};
+const KEY='athletica-v1',APP_VERSION='3.8.2';let data={runs:[],gym:[],body:[],planned:[],shoes:[]};
 try{data={...data,...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){} data.planned=data.planned||[]; data.runs=data.runs||[]; data.gym=data.gym||[]; data.body=data.body||[];
 data.gymSessions=data.gymSessions||[];data.gymPrograms=data.gymPrograms||[];data.gymActiveWorkout=data.gymActiveWorkout||null;
 const defaultGymProgram={id:'gym-program-v1',name:'Programme actuel V1',active:true,createdAt:new Date().toISOString().slice(0,10),days:[
@@ -232,7 +232,7 @@ function updateRunningWidgets(){let period=document.querySelector('[data-period]
 function compareRunsNewest(a,b){const byDate=String(b.date||'').slice(0,10).localeCompare(String(a.date||'').slice(0,10));if(byDate)return byDate;return String(b.startTime||'00:00').localeCompare(String(a.startTime||'00:00'))||String(b.id||'').localeCompare(String(a.id||''))}
 function renderRuns(){let period=$('#filterPeriod')?.value||'all',shoe=$('#filterShoes')?.value||'all',type=$('#filterType')?.value||'all',now=new Date();let rows=data.runs.filter(x=>{if(shoe!=='all'&&x.shoes!==shoe)return false;if(type!=='all'&&x.type!==type)return false;if(period==='7'||period==='30'){let days=+period,d=new Date(x.date+'T00:00:00');let from=new Date(now);from.setDate(from.getDate()-days+1);if(d<from||d>now)return false}if(period==='month'&&!x.date.startsWith(now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')))return false;if(period==='year'&&!x.date.startsWith(String(now.getFullYear())))return false;return true}).sort(compareRunsNewest);$('#runTotalLabel').textContent=rows.length+' / '+data.runs.length+' sortie(s)';$('#runRows').innerHTML=rows.map(x=>`<tr><td>${x.date}</td><td>${x.startTime||'—'}</td><td><span class="pill">${esc(x.type)}</span></td><td>${(+x.distance).toFixed(2)} km</td><td>${durationText(x.duration)}</td><td>${pace(x.distance,x.duration)}</td><td>${x.avgHR||'—'}</td><td><button class="edit" onclick="viewRun('${x.id}')">Détails</button> <button class="edit" onclick="editRun('${x.id}')">Modifier</button> <button class="delete" onclick="del('runs','${x.id}')">Supprimer</button></td></tr>`).join('')||'<tr><td colspan="8" class="empty">Aucune sortie pour ces filtres.</td></tr>'}
 function renderPlanned(){let arr=[...data.planned].sort((a,b)=>a.date.localeCompare(b.date));$('#plannedRows').innerHTML=arr.map(x=>`<div class="card" style="margin-top:10px"><div class="listhead" style="margin-top:0"><div><b>${x.date} · ${esc(x.type)}</b><div class="muted" style="font-size:12px">${x.distance?x.distance+' km · ':''}${esc(x.duration||'')}${x.notes?' · '+esc(x.notes):''}</div></div><div><button class="edit" onclick="completePlan('${x.id}')">Réalisée</button> <button class="edit" onclick="editPlan('${x.id}')">Modifier</button> <button class="delete" onclick="del('planned','${x.id}')">Supprimer</button></div></div></div>`).join('')||'<div class="empty">Aucune séance planifiée.</div>'}
-function viewRun(id){let x=data.runs.find(r=>r.id===id);if(!x)return;let lines=[`${x.date}${x.startTime?' à '+x.startTime:''} — ${x.type}`,`${x.distance} km · ${durationText(x.duration)} · ${pace(x.distance,x.duration)}`,`FC moyenne : ${x.avgHR?x.avgHR+' bpm':'—'} · Calories : ${x.calories?x.calories+' kcal':'—'}`,`Chaussures : ${x.shoes||'—'} · Météo : ${x.weather||'—'}${x.temperature!=null?' · '+x.temperature+'°C':''}`,`Échauffement : ${x.warmupDuration?durationText(x.warmupDuration):'—'} · ${x.warmupDistance||0} km`,`Genou : ${x.kneePain?x.kneePain+'/10':'—'} · ${x.kneeLocation||'—'}${x.kneeOther?' ('+x.kneeOther+')':''}`,'','Km | Temps | FC moyenne'];let n=Math.max((x.splits||[]).length,(x.splitHR||[]).length);for(let i=0;i<n;i++)lines.push(`${i+1} | ${x.splits?.[i]!=null?durationText(x.splits[i]):'—'} | ${x.splitHR?.[i]?x.splitHR[i]+' bpm':'—'}`);if(x.notes)lines.push('','Notes : '+x.notes);alert(lines.join('\n'))}
+function viewRun(id){let x=data.runs.find(r=>r.id===id);if(!x)return;let lines=[`${x.date}${x.startTime?' à '+x.startTime:''} — ${x.type}`,`${x.distance} km · ${durationText(x.duration)} · ${pace(x.distance,x.duration)}`,`FC moyenne : ${x.avgHR?x.avgHR+' bpm':'—'} · FC max : ${x.maxHR?x.maxHR+' bpm':'—'} · Calories : ${x.calories?x.calories+' kcal':'—'}`,`Chaussures : ${x.shoes||'—'} · Météo : ${x.weather||'—'}${x.temperature!=null?' · '+x.temperature+'°C':''}`,`Échauffement : ${x.warmupDuration?durationText(x.warmupDuration):'—'} · ${x.warmupDistance||0} km`,`Genou : ${x.kneePain?x.kneePain+'/10':'—'} · ${x.kneeLocation||'—'}${x.kneeOther?' ('+x.kneeOther+')':''}`,'','Km | Temps | FC moyenne'];let n=Math.max((x.splits||[]).length,(x.splitHR||[]).length);for(let i=0;i<n;i++)lines.push(`${i+1} | ${x.splits?.[i]!=null?durationText(x.splits[i]):'—'} | ${x.splitHR?.[i]?x.splitHR[i]+' bpm':'—'}`);if(x.fitData){const f=x.fitData;lines.push('','Import FIT : intégrité du fichier vérifiée',`Fichier : ${f.fileName||'—'} · ${f.recordCount||0} enregistrements FIT conservés`,f.heartRate?`FC issue des points : moyenne ${f.heartRate.displayAverage??'—'} bpm · maximum ${f.heartRate.displayMaximum??'—'} bpm · ${f.heartRate.sampleCount} mesures valides`:null,f.heartRate&&f.heartRate.summaryAverage!=null?`Résumé FIT d’origine : moyenne ${f.heartRate.summaryAverage} bpm · maximum ${f.heartRate.summaryMaximum??'—'} bpm (conservé séparément)`:null,`Archive complète des messages FIT : ${Object.values(f.messages||{}).reduce((n,a)=>n+(Array.isArray(a)?a.length:0),0)} messages`,f.originalFileArchived?'Fichier FIT original conservé octet pour octet dans la sauvegarde JSON':'Fichier FIT original non inclus (taille supérieure à la limite d’archivage local)',f.elapsedDuration!=null?`Temps écoulé : ${durationText(f.elapsedDuration)}`:null,f.totalAscent!=null?`Dénivelé positif : ${Math.round(f.totalAscent)} m`:null,f.avgSpeed!=null?`Vitesse moyenne FIT : ${(f.avgSpeed*3.6).toFixed(2)} km/h`:null,f.maxSpeed!=null?`Vitesse maximale FIT : ${(f.maxSpeed*3.6).toFixed(2)} km/h`:null).filter(Boolean);if(f.partialSegment){lines.push('',`Dernier segment partiel : ${f.partialSegment.distanceKm.toFixed(3)} km · ${durationText(f.partialSegment.durationMinutes)}${f.partialSegment.avgHR!=null?' · '+f.partialSegment.avgHR+' bpm':''}`)}if(f.laps?.length){lines.push('','Tours FIT | Distance | Temps actif | FC moyenne');f.laps.forEach((l,i)=>lines.push(`${i+1} | ${l.distanceKm!=null?l.distanceKm.toFixed(3)+' km':'—'} | ${l.timerDuration!=null?durationText(l.timerDuration):'—'} | ${l.avgHR||'—'}`))}}if(x.notes)lines.push('','Notes : '+x.notes);alert(lines.join('\n'))}
 function editRun(id){let x=data.runs.find(r=>r.id===id);if(!x)return;let f=$('#runForm');for(let [k,v] of Object.entries({date:x.date,startTime:x.startTime,type:x.type,distance:x.distance,duration:durationText(x.duration),avgHR:x.avgHR,calories:x.calories,elevation:x.elevation,rpe:x.rpe,shoes:x.shoes,weather:x.weather,temperature:x.temperature,warmupDuration:x.warmupDuration?durationText(x.warmupDuration):'',warmupDistance:x.warmupDistance,kneePain:x.kneePain,kneeLocation:x.kneeLocation,kneeOther:x.kneeOther,splits:(x.splits||[]).map(durationText).join(', '),splitHR:(x.splitHR||[]).join(', '),notes:x.notes}))if(f.elements[k])f.elements[k].value=v??'';f.dataset.editId=id;f.querySelector('button[type=submit]').textContent='Enregistrer les modifications';f.scrollIntoView({behavior:'smooth'});}
 function editPlan(id){let x=data.planned.find(r=>r.id===id);if(!x)return;let f=$('#planForm');for(let [k,v] of Object.entries(x))if(f.elements[k])f.elements[k].value=v??'';f.dataset.editId=id;f.querySelector('button[type=submit]').textContent='Enregistrer les modifications';f.scrollIntoView({behavior:'smooth'})}
 function completePlan(id){let x=data.planned.find(r=>r.id===id);if(!x)return;$('#nav button[data-page="running"]').click();let f=$('#runForm');f.elements.date.value=x.date;f.elements.type.value=x.type;f.elements.distance.value=x.distance||'';f.elements.duration.value=x.duration||'';f.elements.notes.value=x.notes||'';f.scrollIntoView({behavior:'smooth'})}
@@ -242,45 +242,180 @@ function bindRunning(){
  $('#runForm').addEventListener('submit',e=>{e.preventDefault();let f=e.target,fd=new FormData(f),duration=parseDuration(fd.get('duration')),warm=fd.get('warmupDuration')?parseDuration(fd.get('warmupDuration')):null;if(duration===null){alert('Durée invalide : utilise mm:ss, par exemple 29:56.');return}if(fd.get('warmupDuration')&&warm===null){alert('Durée d’échauffement invalide.');return}let id=f.dataset.editId||crypto.randomUUID(),obj={id,date:fd.get('date'),startTime:fd.get('startTime'),type:fd.get('type'),distance:+fd.get('distance'),duration,avgHR:+fd.get('avgHR')||null,calories:+fd.get('calories')||null,elevation:+fd.get('elevation')||0,rpe:+fd.get('rpe')||null,shoes:fd.get('shoes'),shoeId:((s)=>s?s.id:undefined)(data.shoes.find(s=>s.name.toLowerCase()===String(fd.get('shoes')||'').trim().toLowerCase())),weather:fd.get('weather'),temperature:fd.get('temperature')===''?null:+fd.get('temperature'),warmupDuration:warm,warmupDistance:+fd.get('warmupDistance')||0,kneePain:+fd.get('kneePain')||null,kneeLocation:fd.get('kneeLocation'),kneeOther:fd.get('kneeOther'),splits:splitDurationList(fd.get('splits')),splitHR:splitNumberList(fd.get('splitHR')),notes:fd.get('notes')};let ix=data.runs.findIndex(x=>x.id===id);if(ix>=0)data.runs[ix]={...data.runs[ix],...obj};else data.runs.push(obj);delete f.dataset.editId;f.reset();f.elements.date.value=today;f.querySelector('button[type=submit]').textContent='Enregistrer la sortie';if(save())alert('Sortie enregistrée !')});
  $('#planForm').addEventListener('submit',e=>{e.preventDefault();let f=e.target,fd=new FormData(f),id=f.dataset.editId||crypto.randomUUID(),obj={id,date:fd.get('date'),type:fd.get('type'),distance:+fd.get('distance')||null,duration:fd.get('duration'),notes:fd.get('notes')};let ix=data.planned.findIndex(x=>x.id===id);if(ix>=0)data.planned[ix]=obj;else data.planned.push(obj);delete f.dataset.editId;f.reset();f.elements.date.value=today;f.querySelector('button[type=submit]').textContent='Ajouter au planning';save()});
 }
-function haversine(a,b){let R=6371000,toRad=v=>v*Math.PI/180,dLat=toRad(b.lat-a.lat),dLon=toRad(b.lon-a.lon),q=Math.sin(dLat/2)**2+Math.cos(toRad(a.lat))*Math.cos(toRad(b.lat))*Math.sin(dLon/2)**2;return 2*R*Math.asin(Math.sqrt(q))}
-function thinTrack(p){const o=[];let lt=-1e15;p.forEach((q,i)=>{if(i===0||i===p.length-1||q.t-lt>=3000){o.push({d:+q.d.toFixed(1),t:q.t});lt=q.t}});return o}
-function parseGPX(txt){
- const xml=new DOMParser().parseFromString(txt,'application/xml');if(xml.querySelector('parsererror'))throw Error('GPX illisible');
- const nodes=[...xml.getElementsByTagName('trkpt')].map(n=>({lat:+n.getAttribute('lat'),lon:+n.getAttribute('lon'),t:Date.parse(n.querySelector('time')?.textContent||''),hr:+(n.getElementsByTagNameNS('*','hr')[0]?.textContent||0)})).filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lon)&&Number.isFinite(p.t));
- if(nodes.length<2)throw Error('Aucun tracé GPS horodaté exploitable dans ce GPX');
- let d=0,pts=[{d:0,t:nodes[0].t}],cum=[0];for(let i=1;i<nodes.length;i++){d+=haversine(nodes[i-1],nodes[i]);cum.push(d);pts.push({d,t:nodes[i].t})}
- const duration=(nodes.at(-1).t-nodes[0].t)/60000;if(!(duration>0)||!(d>0))throw Error('Distance ou horodatages GPX invalides');
- const km=d/1000,parts=[],splitHR=[];let prevTime=nodes[0].t,prevDistance=0,prevIndex=0;
- for(let k=1;k<=Math.floor(km);k++){const target=k*1000;let j=pts.findIndex(p=>p.d>=target);if(j<=0)continue;const a=pts[j-1],b=pts[j],ratio=(target-a.d)/(b.d-a.d||1),t=a.t+(b.t-a.t)*ratio;parts.push((t-prevTime)/60000);
-  const hrSamples=nodes.map((n,i)=>({n,i})).filter(x=>x.i>=prevIndex&&cum[x.i]<target&&x.n.hr>0).map(x=>x.n.hr);splitHR.push(hrSamples.length?Math.round(hrSamples.reduce((u,v)=>u+v,0)/hrSamples.length):null);
-  prevTime=t;prevDistance=target;prevIndex=j;
- }
- const start=new Date(nodes[0].t),hrs=nodes.filter(n=>n.hr>0).map(n=>n.hr);
- return {date:dateKey(start),startTime:`${String(start.getHours()).padStart(2,'0')}:${String(start.getMinutes()).padStart(2,'0')}`,distance:+km.toFixed(3),duration,track:thinTrack(pts),type:'Footing',splits:parts,splitHR,avgHR:hrs.length?Math.round(hrs.reduce((a,b)=>a+b,0)/hrs.length):null,notes:'Import GPX Decathlon Coach'}
+// FIT import: Garmin's official decoder is pinned to a fixed version and loaded from its ESM CDN.
+const FIT_SDK_URL='https://esm.sh/@garmin/fitsdk@21.221.0?bundle';
+let fitSdkPromise=null;
+async function loadFitSdk(){
+ if(!fitSdkPromise)fitSdkPromise=import(FIT_SDK_URL).catch(err=>{fitSdkPromise=null;throw new Error('Le décodeur FIT officiel n’a pas pu être chargé. Connecte-toi à Internet, recharge ATHLETICA puis réessaie. Détail : '+(err?.message||'chargement impossible'));});
+ return fitSdkPromise;
 }
-async function parseDecathlonFile(file){let ext=file.name.toLowerCase().split('.').pop();if(ext==='gpx'||ext==='xml')return parseGPX(await file.text());if(ext==='xls'||ext==='xlsx'){if(!window.XLSX)throw Error('Le module Excel ne s’est pas chargé. Vérifie ta connexion Internet puis réessaie.');let wb=XLSX.read(await file.arrayBuffer(),{type:'array',cellDates:false}),sheets={};for(let name of wb.SheetNames)sheets[norm(name)]=XLSX.utils.sheet_to_json(wb.Sheets[name],{header:1,defval:''});return parseDecathlonWorkbook(sheets)}let txt=await file.text();if(/<table|<html|<Workbook/i.test(txt)){let doc=new DOMParser().parseFromString(txt,'text/html'),rows=[...doc.querySelectorAll('tr')].map(r=>[...r.querySelectorAll('th,td')].map(c=>c.textContent.trim()));return parseDecathlonRows(rows)}if(ext==='csv'){let rows=txt.split(/\r?\n/).map(l=>l.split(/[;,\t]/).map(x=>x.replace(/^"|"$/g,'')));return parseDecathlonRows(rows)}throw Error('Format non pris en charge')}
-function norm(v){return String(v??'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
-function valueAfterLabel(rows,terms){for(let r of rows||[])for(let i=0;i<r.length;i++){let cell=norm(r[i]);if(terms.some(t=>cell.includes(t))){let v=r[i+1]??String(r[i]).split(':').slice(1).join(':');if(v!==''&&v!=null)return v}}return ''}
-function toMinutes(v){if(typeof v==='number'&&v>0&&v<1)return v*1440;let m=String(v??'').match(/\d{1,3}:\d{2}(?::\d{2})?/);return m?parseDuration(m[0]):null}
-function parseDecathlonWorkbook(sheets){let summary=sheets['resume']||sheets['summary']||sheets[Object.keys(sheets).find(k=>k.includes('resume'))]||[],laps=sheets['laps']||[],exportRows=sheets['export']||[];let date=valueAfterLabel(summary,['date']),dist=valueAfterLabel(summary,['distance']),dur=valueAfterLabel(summary,['duree','duration','temps total','temps de pratique']),hr=valueAfterLabel(summary,['frequence cardiaque moyenne','fc moyenne','average heart rate','frequence moyenne']),cal=valueAfterLabel(summary,['calorie','kcal']);let km=parseFloat(String(dist).replace(',','.').replace(/[^0-9.]/g,'')),mins=toMinutes(dur),lapTimes=[],lapHR=[];if(laps.length>1){let h=laps[0].map(norm),hi=h.findIndex(x=>/(frequence|fc|hr|bpm|cardiaque)/.test(x)&&!/(%|max|pourcent|percent)/.test(x)),ti=h.findIndex(x=>x.includes('temps')||x.includes('time')||x.includes('duree'));for(let r of laps.slice(1)){let tm=toMinutes(ti>=0?r[ti]:r.at(-1));if(tm!==null){lapTimes.push(tm);let hv=hi>=0?parseFloat(String(r[hi]).replace(',','.')):NaN;lapHR.push(Number.isFinite(hv)&&hv>0?Math.round(hv):null)}}}if((!km||mins===null)&&exportRows.length>1){let h=exportRows[0].map(norm),di=h.findIndex(x=>x.includes('distance')),ti=h.findIndex(x=>x.includes('temps')||x.includes('time'));if(di>=0&&ti>=0){let last=exportRows.at(-1);km=km||parseFloat(String(last[di]).replace(',','.'));mins=mins??toMinutes(last[ti])}}if(!km||mins===null)throw Error('Le fichier Excel a été lu, mais la distance et la durée n’ont pas été reconnues dans la feuille Résumé.');let dt=(typeof date==='number'&&window.XLSX?.SSF)?new Date(Date.UTC(1899,11,30)+date*86400000):null;let dateStr=date instanceof Date?dateKey(new Date(date.getTime()+300000)):typeof date==='number'&&dt?dt.toISOString().slice(0,10):((d=>d?dateKey(d):'')(parseDateKey(date)));return {date:dateStr||'',distance:km,duration:mins,avgHR:parseFloat(String(hr).replace(',','.'))||null,calories:parseFloat(String(cal).replace(',','.'))||null,splits:lapTimes,splitHR:lapHR.some(Boolean)?lapHR:[],type:'Footing',notes:'Import Decathlon Coach — contrôle les valeurs importées.'}}
-function parseDecathlonRows(rows){let date=valueAfterLabel(rows,['date']),dist=valueAfterLabel(rows,['distance']),dur=valueAfterLabel(rows,['duree','duration','temps total','temps de pratique']),km=parseFloat(String(dist).replace(',','.').replace(/[^0-9.]/g,'')),mins=toMinutes(dur);if(!km||mins===null)throw Error('Distance et durée non reconnues dans ce fichier.');let d=parseDateKey(date);return {date:d?dateKey(d):'',distance:km,duration:mins,type:'Footing',notes:'Import Decathlon Coach — vérifie les valeurs.'}}
-function findDuplicate(o){return data.runs.find(r=>r.date===o.date&&((r.startTime&&o.startTime&&r.startTime===o.startTime)||(Math.abs((+r.distance||0)-o.distance)<0.05&&Math.abs((+r.duration||0)-o.duration)<0.5)))}
-$('#importDecathlon').onclick=async()=>{let file=$('#decathlonFile').files[0];if(!file){alert('Choisis un fichier GPX ou Excel.');return}
-try{let obj=await parseDecathlonFile(file),dup=obj.date?findDuplicate(obj):null,shoes=data.shoes.filter(s=>s.active!==false),lastRun=[...data.runs].sort((a,b)=>String(b.date).localeCompare(String(a.date))).find(r=>r.shoes),
-miss=[!obj.date&&'date',!obj.avgHR&&'FC moyenne',!(obj.splits&&obj.splits.length)&&'temps par km',!(obj.splitHR&&obj.splitHR.some(Boolean))&&'FC par km',!obj.calories&&'calories'].filter(Boolean);
-$('#importPreview').innerHTML=`Fichier analysé : <b>${esc(file.name)}</b><br>${obj.date||'date inconnue'} · ${obj.distance.toFixed(2)} km · ${durationText(obj.duration)}${obj.startTime?' · départ '+obj.startTime:''}`
-+(miss.length?`<br><span class="muted">Non disponible dans le fichier : ${miss.join(', ')}.</span>`:'')
-+(dup?`<br><b style="color:var(--orange)">⚠️ Une sortie très proche existe déjà (${esc(dup.date)} · ${(+dup.distance).toFixed(2)} km). Vérifie avant d’ajouter.</b>`:'')
-+(obj.date?'':`<br>Date : <input type="date" id="importDate" style="max-width:190px">`)
-+`<br>Chaussures : <select id="importShoe"><option value="">Aucune</option>${shoes.map(s=>`<option value="${esc(s.id)}">${esc(s.name)}</option>`).join('')}</select>`
-+`<br><button class="btn primary small" id="confirmDecathlon" type="button">${dup?'Ajouter quand même':'Ajouter cette course'}</button>`;
-const ls=lastRun&&shoes.find(s=>s.name.toLowerCase()===String(lastRun.shoes).trim().toLowerCase());if(ls)$('#importShoe').value=ls.id;
-$('#confirmDecathlon').onclick=()=>{let d=obj.date||$('#importDate')?.value;if(!d){alert('Indique la date de la course avant de l’ajouter.');return}
-let sh=data.shoes.find(s=>s.id===$('#importShoe').value);
-data.runs.push({...obj,date:d,id:crypto.randomUUID(),shoes:sh?sh.name:'',shoeId:sh?sh.id:undefined});
-if(save()){$('#importPreview').textContent='Course importée.';$('#decathlonFile').value=''}}
-}catch(err){$('#importPreview').textContent=err.message}};
-
+function asMessageArray(v){return Array.isArray(v)?v:(v==null?[]:[v]);}
+function finiteFitNumber(v){if(v===null||v===undefined||v===''||typeof v==='boolean')return null;const n=Number(v);return Number.isFinite(n)?n:null;}
+function fitDateValue(v){
+ if(v instanceof Date)return Number.isFinite(v.getTime())?v:null;
+ if(typeof v==='number'&&Number.isFinite(v))return new Date(v*1000+631065600000);
+ if(typeof v==='string'){const n=Date.parse(v);return Number.isFinite(n)?new Date(n):null;}
+ return null;
+}
+function jsonSafeFitValue(value){
+ if(value===null||value===undefined)return null;
+ if(value instanceof Date)return Number.isFinite(value.getTime())?value.toISOString():null;
+ if(typeof value==='number')return Number.isFinite(value)?value:null;
+ if(typeof value==='bigint')return value.toString();
+ if(typeof value==='string'||typeof value==='boolean')return value;
+ if(value instanceof ArrayBuffer)return Array.from(new Uint8Array(value));
+ if(ArrayBuffer.isView(value))return Array.from(value, x=>jsonSafeFitValue(x));
+ if(Array.isArray(value))return value.map(x=>jsonSafeFitValue(x));
+ if(typeof value==='object'){const out={};for(const [k,v] of Object.entries(value)){if(v!==undefined)out[k]=jsonSafeFitValue(v);}return out;}
+ return String(value);
+}
+function serializableFitMessage(m){return jsonSafeFitValue(m);}
+function averageFitValues(values){const a=values.filter(v=>Number.isFinite(v)&&v>=30&&v<=240);if(!a.length)return null;let sum=0,min=Infinity,max=-Infinity;for(const v of a){sum+=v;if(v<min)min=v;if(v>max)max=v;}return {mean:sum/a.length,count:a.length,min,max};}
+function timeWeightedHeartRate(samples){const ordered=samples.slice().sort((a,b)=>a.t-b.t);let area=0,seconds=0;for(let i=1;i<ordered.length;i++){const a=ordered[i-1],b=ordered[i],dt=(b.t-a.t)/1000;if(dt>0&&dt<=10){area+=(a.hr+b.hr)*0.5*dt;seconds+=dt;}}return seconds?area/seconds:null;}
+function bufferToBase64(arrayBuffer){const bytes=new Uint8Array(arrayBuffer);let binary='';const chunk=0x8000;for(let i=0;i<bytes.length;i+=chunk)binary+=String.fromCharCode(...bytes.subarray(i,Math.min(i+chunk,bytes.length)));return btoa(binary);}
+function archiveFitMessages(messages){const archive={};for(const [name,value] of Object.entries(messages||{})){archive[name]=asMessageArray(value).map(serializableFitMessage);}return archive;}
+function makeFitSplits(points,totalDistanceM,startMs,endMs,hrSamples){
+ if(points.length<2||!(totalDistanceM>0))return {splits:[],splitHR:[],partial:null};
+ const ordered=points.slice().sort((a,b)=>a.t-b.t);
+ const monotonic=ordered.every((p,i)=>i===0||p.d>=ordered[i-1].d-1);
+ if(!monotonic)return {splits:[],splitHR:[],partial:null};
+ const calc=ordered.slice();
+ if(Number.isFinite(startMs)&&calc[0].d>0)calc.unshift({d:0,t:startMs});
+ if(Number.isFinite(endMs)&&endMs>calc[calc.length-1].t&&totalDistanceM>calc[calc.length-1].d)calc.push({d:totalDistanceM,t:endMs});
+ const timeAt=target=>{for(let i=1;i<calc.length;i++){const a=calc[i-1],b=calc[i];if(b.d>=target&&a.d<=target&&b.d>a.d){const ratio=(target-a.d)/(b.d-a.d);return a.t+(b.t-a.t)*ratio;}}return null;};
+ const boundaries=[{d:0,t:Number.isFinite(startMs)?startMs:calc[0].t}];
+ const fullKm=Math.floor(totalDistanceM/1000);
+ for(let km=1;km<=fullKm;km++){const d=km*1000,t=timeAt(d);if(t!==null&&t>boundaries[boundaries.length-1].t)boundaries.push({d,t});}
+ const splits=[],splitHR=[];
+ for(let i=1;i<boundaries.length;i++){
+  const a=boundaries[i-1],b=boundaries[i],minutes=(b.t-a.t)/60000;
+  if(!(minutes>0)||!Number.isFinite(minutes))continue;
+  splits.push(minutes);
+  const hr=hrSamples.filter(p=>p.t>a.t&&p.t<=b.t).map(p=>p.hr),summary=averageFitValues(hr);
+  splitHR.push(summary?Math.round(summary.mean):null);
+ }
+ let partial=null;const last=boundaries[boundaries.length-1];
+ if(totalDistanceM-last.d>=50){const endTime=timeAt(totalDistanceM);if(endTime!==null&&endTime>last.t){const hr=hrSamples.filter(p=>p.t>last.t&&p.t<=endTime).map(p=>p.hr),summary=averageFitValues(hr);partial={distanceKm:(totalDistanceM-last.d)/1000,durationMinutes:(endTime-last.t)/60000,avgHR:summary?Math.round(summary.mean):null};}}
+ return {splits,splitHR,partial};
+}
+function decodeFitData(arrayBuffer,fitSdk,fileName,fileSize,sha256){
+ const {Decoder,Stream}=fitSdk;
+ if(!Decoder||!Stream?.fromArrayBuffer)throw new Error('Le décodeur FIT Garmin est indisponible. Aucun enregistrement n’a été modifié.');
+ const probe=Stream.fromArrayBuffer(arrayBuffer.slice(0));
+ if(!Decoder.isFIT(probe))throw new Error('Ce fichier ne possède pas un en-tête FIT valide. Sélectionne le fichier .FIT original.');
+ const decoder=new Decoder(Stream.fromArrayBuffer(arrayBuffer.slice(0)));
+ let integrity=false;try{integrity=decoder.checkIntegrity();}catch(e){throw new Error('Le contrôle d’intégrité FIT a échoué : '+(e?.message||'fichier illisible'));}
+ if(integrity!==true)throw new Error('Le fichier FIT est incomplet ou altéré (taille ou somme de contrôle incorrecte). Il n’a pas été importé.');
+ const decoded=decoder.read({applyScaleAndOffset:true,expandSubFields:true,expandComponents:true,convertTypesToStrings:true,convertDateTimesToDates:true,includeUnknownData:true,mergeHeartRates:true});
+ const errors=asMessageArray(decoded?.errors);
+ if(errors.length)throw new Error('Le décodeur a signalé '+errors.length+' erreur(s). Pour éviter une séance incomplète ou fausse, ATHLETICA refuse cet import.');
+ const messages=decoded?.messages||{};
+ const sessions=asMessageArray(messages.sessionMesgs),records=asMessageArray(messages.recordMesgs),laps=asMessageArray(messages.lapMesgs),fileIds=asMessageArray(messages.fileIdMesgs),activities=asMessageArray(messages.activityMesgs);
+ if(sessions.length!==1)throw new Error(sessions.length>1?'Ce fichier contient plusieurs sessions. Exporte chaque activité séparément pour éviter de les mélanger.':'Le fichier ne contient pas de résumé de session. Il est refusé pour ne pas reconstruire une activité incomplète.');
+ const session=sessions[0];
+ if(activities.some(a=>finiteFitNumber(a?.numSessions)!==null&&finiteFitNumber(a.numSessions)>1))throw new Error('Ce fichier FIT annonce plusieurs sessions dans son activité. Exporte chaque activité séparément pour éviter tout mélange.');
+ const sport=String(session?.sport??'').toLowerCase(),subSport=String(session?.subSport??'').toLowerCase();
+ const allowedSports=['running','treadmillrunning','virtualactivity'];
+ if(sport&&!allowedSports.includes(sport))throw new Error('Ce FIT correspond à « '+sport+' » et non à une activité de course. Aucun enregistrement n’a été ajouté.');
+ if(!records.length)throw new Error('Le FIT ne contient aucun point d’enregistrement. Aucun import n’a été effectué.');
+ if(records.length>150000)throw new Error('Ce FIT contient un nombre anormalement élevé de points. Aucun import n’a été effectué.');
+ const asNumber=v=>{const n=finiteFitNumber(v);return n!==null&&n>=0?n:null;};
+ const timedRecords=[];let previousTimestamp=-Infinity,timestampsMonotonic=true;
+ for(const r of records){
+  const dt=fitDateValue(r?.timestamp);if(!dt)continue;
+  const t=dt.getTime();if(t<previousTimestamp)timestampsMonotonic=false;previousTimestamp=t;
+  const hr=finiteFitNumber(r?.heartRate);
+  if(hr!==null&&hr>=30&&hr<=240)timedRecords.push({t,hr});
+ }
+ const points=[];let previousDistance=-Infinity,distanceMonotonic=true;
+ for(const r of records){
+  const dt=fitDateValue(r?.timestamp),distance=finiteFitNumber(r?.distance);
+  if(!dt||distance===null||distance<0)continue;
+  if(distance<previousDistance-1)distanceMonotonic=false;previousDistance=distance;
+  const p={d:distance,t:dt.getTime()};
+  // FIT position fields are signed semicircles, not decimal degrees. Keep both forms:
+  // decimal degrees for app consumers and original semicircles for traceability.
+  const latSC=finiteFitNumber(r.positionLat),lonSC=finiteFitNumber(r.positionLong);
+  const lat=latSC===null?null:latSC*(180/2147483648),lon=lonSC===null?null:lonSC*(180/2147483648);
+  const fields={hr:finiteFitNumber(r.heartRate),lat:lat!==null&&Math.abs(lat)<=90?lat:null,lon:lon!==null&&Math.abs(lon)<=180?lon:null,latSemicircles:latSC,lonSemicircles:lonSC,speed:finiteFitNumber(r.enhancedSpeed??r.speed),altitude:finiteFitNumber(r.enhancedAltitude??r.altitude),cadence:finiteFitNumber(r.cadence),power:finiteFitNumber(r.power),temperature:finiteFitNumber(r.temperature)};
+  for(const [k,v] of Object.entries(fields))if(v!==null)p[k]=v;
+  points.push(p);
+ }
+ const start=fitDateValue(session?.startTime),end=fitDateValue(session?.timestamp);
+ if(!start||!Number.isFinite(start.getTime()))throw new Error('La date de départ est absente du FIT. Le fichier n’a pas été importé.');
+ let distanceM=asNumber(session?.totalDistance);
+ if(!(distanceM>0)&&points.length>1&&distanceMonotonic)distanceM=points[points.length-1].d;
+ if(!(distanceM>0))throw new Error('La distance totale n’est pas présente dans le résumé FIT ni récupérable à partir des points de distance. Aucune distance n’a été devinée.');
+ let timerSec=asNumber(session?.totalTimerTime),elapsedSec=asNumber(session?.totalElapsedTime);
+ const timerSource=timerSec>0?'session_totalTimerTime':(elapsedSec>0?'session_totalElapsedTime_fallback':'record_timestamps_fallback');
+ if(!(timerSec>0)&&elapsedSec>0)timerSec=elapsedSec;
+ if(!(timerSec>0)&&records.length>1){const first=fitDateValue(records.find(r=>fitDateValue(r?.timestamp))?.timestamp),last=fitDateValue([...records].reverse().find(r=>fitDateValue(r?.timestamp))?.timestamp);if(first&&last)timerSec=(last.getTime()-first.getTime())/1000;}
+ if(!(timerSec>0))throw new Error('La durée n’est pas présente dans le FIT et ne peut pas être déterminée à partir des horodatages.');
+ const date=dateKey(start),startTime=`${String(start.getHours()).padStart(2,'0')}:${String(start.getMinutes()).padStart(2,'0')}`;
+ const sortedPoints=points.slice().sort((a,b)=>a.t-b.t);
+ const splitData=distanceMonotonic&&timestampsMonotonic?makeFitSplits(sortedPoints,distanceM,start.getTime(),end?.getTime(),timedRecords):{splits:[],splitHR:[]};
+ const track=distanceMonotonic?sortedPoints:[];
+ const validHR=records.map(r=>finiteFitNumber(r?.heartRate)).filter(v=>v!==null&&v>=30&&v<=240);
+ const hrSummary=averageFitValues(validHR);
+ const sessionAvgHR=asNumber(session?.avgHeartRate),sessionMaxHR=asNumber(session?.maxHeartRate);
+ const averageFromRecords=hrSummary?hrSummary.mean:null;
+ const maxFromRecords=hrSummary?hrSummary.max:null;
+ // Match the consumer-facing Decathlon value: arithmetic mean of valid, individual record samples.
+ // The FIT session summary is retained separately because it can disagree with those samples.
+ const avgHR=averageFromRecords!==null?Math.round(averageFromRecords):(sessionAvgHR!==null&&sessionAvgHR>=30&&sessionAvgHR<=240?Math.round(sessionAvgHR):null);
+ const maxHR=maxFromRecords!==null?maxFromRecords:(sessionMaxHR!==null&&sessionMaxHR>=30&&sessionMaxHR<=240?sessionMaxHR:null);
+ const calories=asNumber(session?.totalCalories),avgSpeed=asNumber(session?.enhancedAvgSpeed??session?.avgSpeed),maxSpeed=asNumber(session?.enhancedMaxSpeed??session?.maxSpeed);
+ const totalAscent=asNumber(session?.totalAscent),totalDescent=asNumber(session?.totalDescent);
+ const fitLaps=laps.map(l=>({startTime:fitDateValue(l.startTime)?.toISOString()||null,endTime:fitDateValue(l.timestamp)?.toISOString()||null,distanceKm:asNumber(l.totalDistance)!=null?asNumber(l.totalDistance)/1000:null,timerDuration:asNumber(l.totalTimerTime)!=null?asNumber(l.totalTimerTime)/60:null,elapsedDuration:asNumber(l.totalElapsedTime)!=null?asNumber(l.totalElapsedTime)/60:null,avgHR:(asNumber(l.avgHeartRate)>=30&&asNumber(l.avgHeartRate)<=240?asNumber(l.avgHeartRate):null),maxHR:(asNumber(l.maxHeartRate)>=30&&asNumber(l.maxHeartRate)<=240?asNumber(l.maxHeartRate):null),avgSpeed:asNumber(l.avgSpeed),maxSpeed:asNumber(l.maxSpeed),totalAscent:asNumber(l.totalAscent)}));
+ const archive=archiveFitMessages(messages);
+ const bytes=new Uint8Array(arrayBuffer),crc16=bytes.length>=2?((bytes[bytes.length-1]<<8)|bytes[bytes.length-2]).toString(16).padStart(4,'0'):null;
+ const fileId=fileIds[0]||{};
+ const fitData={format:'FIT',fileName:String(fileName||'activité.fit'),fileSize,sha256:sha256||null,fileCRC16:crc16,integrityChecked:true,sport:sport||null,subSport:subSport||null,manufacturer:fileId.manufacturer??null,product:fileId.product??null,recordCount:records.length,heartRateSampleCount:validHR.length,usableTrackPoints:points.length,elapsedDuration:elapsedSec>0?elapsedSec/60:null,totalAscent,totalDescent,avgSpeed,maxSpeed,sessionSummaryHeartRate:{average:sessionAvgHR,max:sessionMaxHR},heartRate:{method:hrSummary?'arithmetic_mean_of_valid_record_samples':'session_summary_fallback',sampleCount:hrSummary?.count||0,averageExact:averageFromRecords,maxFromRecords,minFromRecords:hrSummary?.min??null,timeWeightedAverage:timeWeightedHeartRate(timedRecords),summaryAverage:sessionAvgHR,summaryMaximum:sessionMaxHR,displayAverage:avgHR,displayMaximum:maxHR},timerSource,partialSegment:splitData.partial,laps:fitLaps,session:serializableFitMessage(session),messages:archive,originalFileBase64:fileSize<=262144?bufferToBase64(arrayBuffer):null,originalFileArchived:fileSize<=262144};
+ return {date,startTime,distance:+(distanceM/1000).toFixed(3),duration:timerSec/60,elapsedDuration:elapsedSec>0?elapsedSec/60:null,track,splits:splitData.splits,splitHR:splitData.splitHR,avgHR,maxHR,calories:calories!==null?calories:null,elevation:totalAscent!==null?totalAscent:null,type:subSport.includes('interval')?'Fractionné':'Footing',fitData,notes:'Import FIT Garmin : FC calculée à partir des points individuels lorsque disponibles. Le résumé de session et tous les messages décodés sont conservés séparément.'};
+}
+async function sha256File(arrayBuffer){try{if(!crypto?.subtle)return null;const digest=await crypto.subtle.digest('SHA-256',arrayBuffer);return Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');}catch(e){return null;}}
+async function parseFITFile(file){
+ if(!file)throw new Error('Choisis un fichier FIT.');
+ if(!/\.fit$/i.test(file.name))throw new Error('Format refusé : ATHLETICA accepte uniquement les fichiers .FIT pour les activités.');
+ if(file.size<14)throw new Error('Fichier trop petit pour être un FIT valide.');
+ if(file.size>262144)throw new Error('Ce FIT dépasse 256 Ko. Pour garantir la conservation exacte du fichier original dans la sauvegarde ATHLETICA, cet import est refusé. Garde le FIT original et exporte une version FIT plus légère si ton appareil le permet. Aucune donnée ATHLETICA n’a été modifiée.');
+ const arrayBuffer=await file.arrayBuffer();
+ const sha256=await sha256File(arrayBuffer);
+ const sdk=await loadFitSdk();
+ return decodeFitData(arrayBuffer,sdk,file.name,file.size,sha256);
+}
+function findSimilarRun(o){return data.runs.find(r=>r.date===o.date&&((r.startTime&&o.startTime&&r.startTime===o.startTime)||(Math.abs((+r.distance||0)-o.distance)<0.03&&Math.abs((+r.duration||0)-o.duration)<0.25)));}
+$('#analyzeFit').onclick=async()=>{
+ const file=$('#fitFile').files[0],preview=$('#fitImportPreview');
+ if(!file){preview.textContent='Choisis un fichier .FIT avant de lancer l’analyse.';return;}
+ preview.textContent='Analyse du fichier et vérification des sommes de contrôle…';
+ $('#analyzeFit').disabled=true;
+ try{
+  const obj=await parseFITFile(file);
+  const same=data.runs.find(r=>r.fitData?.sha256&&obj.fitData.sha256&&r.fitData.sha256===obj.fitData.sha256);
+  if(same){preview.innerHTML=`<b style="color:var(--orange)">Ce fichier FIT a déjà été importé (${esc(same.date)}). Aucun doublon n’a été créé.</b>`;return;}
+  const similar=findSimilarRun(obj),shoes=data.shoes.filter(s=>s.active!==false),lastRun=[...data.runs].sort(compareRunsNewest).find(r=>r.shoes);
+  const missing=[!obj.avgHR&&'FC moyenne',!(obj.splits?.length)&&'splits kilométriques',!(obj.splitHR?.some(v=>v!=null))&&'FC par kilomètre',obj.calories==null&&'calories',obj.elevation==null?'dénivelé positif':null].filter(Boolean);
+  const f=obj.fitData;
+  preview.innerHTML=`<div><b>FIT valide · intégrité vérifiée</b></div><div style="margin-top:5px"><b>${esc(file.name)}</b> · ${(file.size/1024).toFixed(1)} Ko</div><div style="margin-top:5px">${obj.date} à ${obj.startTime} · <b>${obj.distance.toFixed(3)} km</b> · ${durationText(obj.duration)} actif${obj.elapsedDuration!=null&&Math.abs(obj.elapsedDuration-obj.duration)>0.02?' · '+durationText(obj.elapsedDuration)+' écoulé':''}</div><div>FC moyenne : ${obj.avgHR!=null?obj.avgHR+' bpm':'Non renseignée'} · FC max : ${obj.maxHR!=null?obj.maxHR+' bpm':'Non renseignée'} · Calories : ${obj.calories!=null?Math.round(obj.calories)+' kcal':'Non renseignées'} · D+ : ${obj.elevation!=null?Math.round(obj.elevation)+' m':'Non renseigné'}</div><div class="muted" style="font-size:11px;margin-top:5px">${f.recordCount} enregistrements FIT conservés · ${f.heartRateSampleCount} mesures FC · ${f.laps.length} tour(s) · ${esc(f.sport||'sport non précisé')}${f.subSport?' / '+esc(f.subSport):''}</div>`
+   +(missing.length?`<div class="muted" style="font-size:11px;margin-top:5px">Non présent ou non exploitable dans le FIT : ${missing.join(', ')}. Rien n’a été inventé.</div>`:'')
+   +(f.heartRate&&f.heartRate.sampleCount?`<div class="muted" style="font-size:11px;margin-top:5px">FC moyenne calculée sur ${f.heartRate.sampleCount} mesures individuelles (la moyenne du résumé FIT, ${f.heartRate.summaryAverage??'—'} bpm, est conservée séparément).</div>`:'')
+   +(f.originalFileArchived?`<div class="muted" style="font-size:11px;margin-top:5px">Le fichier FIT original sera aussi conservé dans ta sauvegarde JSON.</div>`:`<div style="color:var(--orange);font-size:11px;margin-top:5px">Le FIT dépasse la limite d’archivage brut de 256 Ko. Les messages décodés seront conservés, mais garde aussi le fichier original.</div>`)
+   +(similar?`<div style="color:var(--orange);margin-top:7px">⚠️ Une sortie très proche existe déjà (${esc(similar.date)} · ${(+similar.distance).toFixed(2)} km). Vérifie qu’il ne s’agit pas de la même séance.</div>`:'')
+   +`<div class="field" style="margin-top:10px"><label>Associer une paire (facultatif)</label><select id="fitShoe"><option value="">Aucune</option>${shoes.map(sh=>`<option value="${esc(sh.id)}">${esc(sh.name)}</option>`).join('')}</select></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn primary small" id="confirmFitImport" type="button">Ajouter cette course</button><button class="btn small" id="cancelFitImport" type="button">Annuler</button></div>`;
+  const lastShoe=lastRun&&shoes.find(sh=>sh.name.toLowerCase()===String(lastRun.shoes).trim().toLowerCase());if(lastShoe)$('#fitShoe').value=lastShoe.id;
+  $('#cancelFitImport').onclick=()=>{preview.textContent='Import annulé. Aucune donnée n’a été modifiée.';};
+  $('#confirmFitImport').onclick=()=>{
+   if(similar&&!confirm('Une séance très proche existe déjà. Confirmer l’ajout d’une deuxième séance ?'))return;
+   const sh=data.shoes.find(x=>x.id===$('#fitShoe').value);
+   const run={...obj,id:crypto.randomUUID(),shoes:sh?sh.name:'',shoeId:sh?sh.id:undefined};
+   const previousRuns=data.runs;data.runs=[...data.runs,run];
+   if(save()){preview.textContent='Course FIT ajoutée. Les autres séances et données ATHLETICA n’ont pas été modifiées.';$('#fitFile').value='';}
+   else{data.runs=previousRuns;preview.textContent='Enregistrement impossible : l’espace de stockage est insuffisant. Aucune séance existante n’a été modifiée. Exporte une sauvegarde et libère de l’espace avant de réessayer.';}
+  };
+ }catch(err){preview.textContent=err?.message||'Erreur inconnue pendant l’analyse FIT. Aucun enregistrement n’a été modifié.';}
+ finally{$('#analyzeFit').disabled=false;}
+};
 
 function shoeKm(shoe){
  const logged=data.runs.filter(r=>r.shoeId?r.shoeId===shoe.id:String(r.shoes||'').trim().toLowerCase()===shoe.name.toLowerCase()).reduce((a,r)=>a+(+r.distance||0),0);
